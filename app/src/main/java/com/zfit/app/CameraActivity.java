@@ -49,7 +49,7 @@ public class CameraActivity extends AppCompatActivity {
     private String currentDate;
     private FoodDbHelper dbHelper;
     private boolean aiEnabled = true;
-    private static final String PREFS = "zfit_prefs";
+    private static final String PREFS = "de_prefs";
 
     // Detected food
     private String detectedFoodName = "";

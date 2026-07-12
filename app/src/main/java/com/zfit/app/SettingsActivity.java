@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class SettingsActivity extends AppCompatActivity {
 
     private EditText etApiKey, etHeight, etWeight, etCalGoal, etProteinGoal, etCarbsGoal, etFatGoal;
-    private static final String PREFS = "zfit_prefs";
+    private static final String PREFS = "de_prefs";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.ZFit" parent="Theme.MaterialComponents.NoActionBar">
+    <style name="Theme.DEFit" parent="Theme.MaterialComponents.NoActionBar">
         <item name="android:windowBackground">@color/colorBg2</item>
         <item name="android:statusBarColor">@color/colorBg</item>
         <item name="android:navigationBarColor">@color/colorBg</item>
@@ -13,7 +13,7 @@
         <item name="android:textColorSecondary">@color/colorMut</item>
     </style>
 
-    <style name="Widget.ZFit.Button.Primary" parent="Widget.MaterialComponents.Button">
+    <style name="Widget.DEFit.Button.Primary" parent="Widget.MaterialComponents.Button">
         <item name="android:backgroundTint">@color/colorPurple</item>
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:textSize">14sp</item>
@@ -22,7 +22,7 @@
         <item name="android:paddingBottom">14dp</item>
     </style>
 
-    <style name="Widget.ZFit.Button.Secondary" parent="Widget.MaterialComponents.Button.OutlinedButton">
+    <style name="Widget.DEFit.Button.Secondary" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="android:backgroundTint">@android:color/transparent</item>
         <item name="strokeColor">@color/colorLine</item>
         <item name="strokeWidth">1dp</item>
@@ -33,7 +33,7 @@
         <item name="android:paddingBottom">12dp</item>
     </style>
 
-    <style name="Widget.ZFit.TabLayout" parent="Widget.MaterialComponents.TabLayout">
+    <style name="Widget.DEFit.TabLayout" parent="Widget.MaterialComponents.TabLayout">
         <item name="tabBackground">@android:color/transparent</item>
         <item name="tabTextColor">@color/colorDim</item>
         <item name="tabSelectedTextColor">@color/colorPurple</item>
@@ -41,7 +41,7 @@
         <item name="tabIndicatorHeight">2dp</item>
     </style>
 
-    <style name="Widget.ZFit.Chip" parent="Widget.MaterialComponents.Chip.Choice">
+    <style name="Widget.DEFit.Chip" parent="Widget.MaterialComponents.Chip.Choice">
         <item name="android:textColor">@color/colorMut</item>
         <item name="chipBackgroundColor">@color/colorPanel</item>
         <item name="chipStrokeColor">@color/colorLine</item>

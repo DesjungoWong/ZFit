@@ -14,7 +14,7 @@ import java.util.List;
 
 public class FoodDbHelper extends SQLiteOpenHelper {
 
-    private static final String DB_NAME = "zfit.db";
+    private static final String DB_NAME = "de.db";
     private static final int DB_VERSION = 1;
 
     private static final String CREATE_FOOD_LOG =

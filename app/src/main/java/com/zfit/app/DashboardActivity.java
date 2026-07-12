@@ -36,7 +36,7 @@ public class DashboardActivity extends AppCompatActivity {
     private LinearLayout llBarChart;
     private FoodDbHelper dbHelper;
     private int activeTab = 0;
-    private static final String PREFS = "zfit_prefs";
+    private static final String PREFS = "de_prefs";
     private static final SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 
     @Override

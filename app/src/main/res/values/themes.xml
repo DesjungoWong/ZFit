@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- ZFit dark theme - no dynamic colors, hardcoded palette -->
-    <style name="Theme.ZFit.Base" parent="Theme.MaterialComponents.NoActionBar">
+    <style name="Theme.DEFit.Base" parent="Theme.MaterialComponents.NoActionBar">
         <item name="android:windowBackground">@color/colorBg2</item>
         <item name="android:statusBarColor">@color/colorBg</item>
         <item name="android:navigationBarColor">@color/colorBg</item>
@@ -19,7 +19,7 @@
         <item name="colorOnBackground">@color/colorTxt</item>
         <item name="android:textColorPrimary">@color/colorTxt</item>
         <item name="android:textColorSecondary">@color/colorMut</item>
-        <item name="materialButtonStyle">@style/Widget.ZFit.Button.Primary</item>
-        <item name="chipStyle">@style/Widget.ZFit.Chip</item>
+        <item name="materialButtonStyle">@style/Widget.DEFit.Button.Primary</item>
+        <item name="chipStyle">@style/Widget.DEFit.Chip</item>
     </style>
 </resources>

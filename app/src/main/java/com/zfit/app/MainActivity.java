@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private String currentDate;
     private Calendar currentCal;
 
-    private static final String PREFS = "zfit_prefs";
+    private static final String PREFS = "de_prefs";
     private static final SimpleDateFormat SDF_KEY = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
     private static final SimpleDateFormat SDF_DISPLAY = new SimpleDateFormat("EEE, d MMM", Locale.US);
 

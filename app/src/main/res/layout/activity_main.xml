@@ -23,7 +23,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Z.Fit"
+                android:text="DE.Fit"
                 android:textSize="22sp"
                 android:textColor="#F4F4F6"
                 android:textStyle="bold"
