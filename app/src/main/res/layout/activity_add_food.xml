@@ -70,7 +70,7 @@
             <LinearLayout android:id="@+id/llSelectedCard"
                 android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:orientation="vertical" android:background="#141419"
-                android:margin="16dp" android:layout_margin="16dp" android:padding="16dp"
+                android:layout_margin="16dp" android:padding="16dp"
                 android:visibility="gone">
 
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"

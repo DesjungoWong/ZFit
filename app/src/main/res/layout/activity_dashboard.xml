@@ -48,7 +48,7 @@
         <!-- Health Score Card -->
         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
             android:orientation="vertical" android:background="#141419"
-            android:margin="16dp" android:layout_margin="16dp" android:padding="20dp">
+            android:layout_margin="16dp" android:padding="20dp">
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                 android:text="HEALTH SCORE" android:textSize="9sp" android:textColor="#5C5C66"
                 android:letterSpacing="0.14" android:layout_marginBottom="8dp"/>
