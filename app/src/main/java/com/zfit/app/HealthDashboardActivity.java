@@ -1,4 +1,4 @@
-﻿package com.zfit.app;
+package com.zfit.app;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -140,7 +140,7 @@ public class HealthDashboardActivity extends AppCompatActivity {
                 " Water=" + r.getWaterMl() + "ml Exercise=" + r.getExerciseMinutes() + "min" +
                 " HR=" + r.getHeartRate() + "bpm. Score out of 100 and brief tips. 3 sentences max.";
         showAISheet("Getting AI rating...");
-        String finalPrompt = prompt;
+        final String finalPrompt = prompt;
         new Thread(() -> {
             try {
                 URL url = new URL("https://api.anthropic.com/v1/messages");
@@ -175,6 +175,7 @@ public class HealthDashboardActivity extends AppCompatActivity {
     }
 
     private BottomSheetDialog bsDialog;
+
     private void showAISheet(String msg) {
         if (bsDialog != null && bsDialog.isShowing()) bsDialog.dismiss();
         bsDialog = new BottomSheetDialog(this);

@@ -16,11 +16,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.zfit.app.adapters.FoodLogAdapter;
 import com.zfit.app.db.FoodDbHelper;
 import com.zfit.app.models.FoodEntry;
+import com.zfit.app.models.HealthRecord;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -135,9 +135,9 @@ public class MainActivity extends AppCompatActivity {
     private void addWater(int ml) {
         // Quick-add water by updating health record
         new Thread(() -> {
-            var record = dbHelper.getHealthRecordForDate(currentDate);
+            HealthRecord record = dbHelper.getHealthRecordForDate(currentDate);
             if (record == null) {
-                record = new com.zfit.app.models.HealthRecord(currentDate);
+                record = new HealthRecord(currentDate);
             }
             record.setWaterMl(record.getWaterMl() + ml);
             dbHelper.upsertHealthRecord(record);
@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
             int totalCal = dbHelper.getTotalCaloriesForDate(currentDate);
             float[] macros = dbHelper.getMacrosForDate(currentDate);
             List<FoodEntry> entries = dbHelper.getFoodEntriesForDate(currentDate);
-            var healthRecord = dbHelper.getHealthRecordForDate(currentDate);
+            HealthRecord healthRecord = dbHelper.getHealthRecordForDate(currentDate);
             int burned = healthRecord != null ? healthRecord.getCaloriesBurned() : 0;
             int waterMl = healthRecord != null ? healthRecord.getWaterMl() : 0;
 
