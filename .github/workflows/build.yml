@@ -26,31 +26,35 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build debug APK
-        run: ./gradlew assembleDebug --no-daemon --info 2>&1 | tail -200
+        run: ./gradlew assembleDebug --no-daemon
 
-      - name: Rename APK
-        run: mv app/build/outputs/apk/debug/app-debug.apk app/build/outputs/apk/debug/ZFit-v1.0-debug.apk
+      - name: Locate and rename APK
+        run: |
+          find app/build/outputs/apk -name "*.apk" | head -5
+          APK=$(find app/build/outputs/apk -name "*.apk" | head -1)
+          echo "Found APK: $APK"
+          cp "$APK" app/build/outputs/apk/debug/DEFit-v1.0-debug.apk
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ZFit-APK
-          path: app/build/outputs/apk/debug/ZFit-v1.0-debug.apk
+          name: DEFit-APK
+          path: app/build/outputs/apk/debug/DEFit-v1.0-debug.apk
           retention-days: 90
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v1.0-build-${{ github.run_number }}
-          name: "Z.Fit v1.0 (Build ${{ github.run_number }})"
+          name: "DE.Fit v1.0 (Build ${{ github.run_number }})"
           body: |
-            ## Z.Fit v1.0
+            ## DE.Fit v1.0
 
             ### Install on Android
-            1. Download `ZFit-v1.0-debug.apk` below
+            1. Download `DEFit-v1.0-debug.apk` below
             2. On your phone: Settings → Apps → Install unknown apps → allow your browser
             3. Open the downloaded APK and install
-            4. Launch Z.Fit → go to Settings → enter your Claude API key
+            4. Launch DE.Fit → go to Settings → enter your Claude API key
 
             ### Minimum: Android 8.0 (Honor 7 Pro supported)
 
@@ -60,7 +64,7 @@ jobs:
             - Singapore + global food database (OpenFoodFacts)
             - Google Health Connect import
             - Weekly reports + health score
-          files: app/build/outputs/apk/debug/ZFit-v1.0-debug.apk
+          files: app/build/outputs/apk/debug/DEFit-v1.0-debug.apk
           draft: false
           prerelease: false
         env:
