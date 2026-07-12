@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Backgrounds -->
+    <color name="colorBg">#0A0A0B</color>
+    <color name="colorBg2">#101013</color>
+    <color name="colorPanel">#141419</color>
+    <color name="colorLine">#1A1A20</color>
+
+    <!-- Text -->
+    <color name="colorTxt">#F4F4F6</color>
+    <color name="colorMut">#9A9AA3</color>
+    <color name="colorDim">#5C5C66</color>
+
+    <!-- Accent: Purple -->
+    <color name="colorPurple">#A100FF</color>
+    <color name="colorPurpleSoft">#C86BFF</color>
+    <color name="colorPurpleDim">#1F0A33</color>
+
+    <!-- Accent: Gold -->
+    <color name="colorGold">#D9B96A</color>
+
+    <!-- Status Colors -->
+    <color name="colorGreen">#4FD1A0</color>
+    <color name="colorRed">#FF5C7A</color>
+    <color name="colorBlue">#5C7AFF</color>
+    <color name="colorAmber">#E8A838</color>
+
+    <!-- Neutral -->
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBlack">#000000</color>
+</resources>

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#141419"
+    android:padding="20dp">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:gravity="center_vertical"
+        android:layout_marginBottom="16dp">
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:text="AI Health Advisory"
+            android:textSize="16sp" android:textColor="#F4F4F6" android:textStyle="bold"/>
+        <Button android:id="@+id/btnCloseSheet"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="✕" android:textSize="14sp" android:textColor="#5C5C66"
+            android:background="@android:color/transparent"
+            android:minWidth="0dp" android:minHeight="0dp" android:padding="4dp"/>
+    </LinearLayout>
+
+    <TextView android:id="@+id/tvAIResponse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Loading..."
+        android:textSize="14sp"
+        android:textColor="#9A9AA3"
+        android:lineSpacingMultiplier="1.5"
+        android:layout_marginBottom="20dp"/>
+</LinearLayout>

@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#101013">
+
+    <!-- Header -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:background="#0A0A0B"
+        android:padding="16dp" android:gravity="center_vertical">
+        <Button android:id="@+id/btnBack" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:text="‹" android:textSize="20sp"
+            android:background="@android:color/transparent" android:textColor="#9A9AA3"
+            android:minWidth="0dp" android:minHeight="0dp" android:padding="8dp"
+            android:layout_marginEnd="8dp"/>
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="Add Food" android:textSize="18sp"
+            android:textColor="#F4F4F6" android:textStyle="bold"/>
+    </LinearLayout>
+
+    <!-- Meal Type Chips -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:padding="16dp" android:paddingBottom="8dp">
+        <Button android:id="@+id/btnBreakfast" android:layout_width="0dp" android:layout_height="34dp"
+            android:layout_weight="1" android:text="Breakfast" android:textSize="11sp"
+            android:textColor="#9A9AA3" android:background="#141419" android:layout_marginEnd="3dp"
+            android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp"/>
+        <Button android:id="@+id/btnLunch" android:layout_width="0dp" android:layout_height="34dp"
+            android:layout_weight="1" android:text="Lunch" android:textSize="11sp"
+            android:textColor="#9A9AA3" android:background="#141419"
+            android:layout_marginStart="3dp" android:layout_marginEnd="3dp"
+            android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp"/>
+        <Button android:id="@+id/btnDinner" android:layout_width="0dp" android:layout_height="34dp"
+            android:layout_weight="1" android:text="Dinner" android:textSize="11sp"
+            android:textColor="#9A9AA3" android:background="#141419"
+            android:layout_marginStart="3dp" android:layout_marginEnd="3dp"
+            android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp"/>
+        <Button android:id="@+id/btnSnack" android:layout_width="0dp" android:layout_height="34dp"
+            android:layout_weight="1" android:text="Snack" android:textSize="11sp"
+            android:textColor="#9A9AA3" android:background="#141419" android:layout_marginStart="3dp"
+            android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp"/>
+    </LinearLayout>
+
+    <!-- Search -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:paddingStart="16dp" android:paddingEnd="16dp"
+        android:paddingBottom="8dp">
+        <EditText android:id="@+id/etSearch"
+            android:layout_width="match_parent" android:layout_height="48dp"
+            android:hint="Search food..." android:textColor="#F4F4F6"
+            android:textColorHint="#5C5C66" android:textSize="14sp"
+            android:background="#141419" android:paddingStart="12dp" android:paddingEnd="12dp"
+            android:imeOptions="actionSearch" android:inputType="text"
+            android:singleLine="true"/>
+    </LinearLayout>
+
+    <ScrollView android:layout_width="match_parent" android:layout_height="0dp"
+        android:layout_weight="1">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Suggestions List -->
+            <LinearLayout android:id="@+id/llSuggestions"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="16dp" android:paddingEnd="16dp"/>
+
+            <!-- Selected Card -->
+            <LinearLayout android:id="@+id/llSelectedCard"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:background="#141419"
+                android:margin="16dp" android:layout_margin="16dp" android:padding="16dp"
+                android:visibility="gone">
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="SELECTED" android:textSize="9sp" android:textColor="#5C5C66"
+                    android:letterSpacing="0.12" android:layout_marginBottom="6dp"/>
+                <TextView android:id="@+id/tvSelFoodName"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="—" android:textSize="16sp" android:textColor="#F4F4F6"
+                    android:layout_marginBottom="4dp"/>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical"
+                    android:layout_marginBottom="12dp">
+                    <TextView android:id="@+id/tvSelCal"
+                        android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="—"
+                        android:textSize="20sp" android:textColor="#C86BFF" android:textStyle="bold"/>
+                    <TextView android:id="@+id/tvSelMacro"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="—" android:textSize="12sp" android:textColor="#5C5C66"/>
+                </LinearLayout>
+
+                <!-- Stepper -->
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical"
+                    android:layout_marginBottom="12dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Servings:" android:textSize="13sp" android:textColor="#9A9AA3"
+                        android:layout_marginEnd="12dp"/>
+                    <Button android:id="@+id/btnServingMinus"
+                        android:layout_width="36dp" android:layout_height="36dp"
+                        android:text="−" android:textSize="18sp" android:textColor="#F4F4F6"
+                        android:background="#1A1A20" android:minWidth="0dp" android:minHeight="0dp"
+                        android:padding="0dp"/>
+                    <TextView android:id="@+id/tvServing"
+                        android:layout_width="40dp" android:layout_height="wrap_content"
+                        android:gravity="center" android:text="1"
+                        android:textSize="16sp" android:textColor="#F4F4F6"/>
+                    <Button android:id="@+id/btnServingPlus"
+                        android:layout_width="36dp" android:layout_height="36dp"
+                        android:text="+" android:textSize="18sp" android:textColor="#F4F4F6"
+                        android:background="#1A1A20" android:minWidth="0dp" android:minHeight="0dp"
+                        android:padding="0dp"/>
+                </LinearLayout>
+
+                <Button android:id="@+id/btnAddToLog"
+                    android:layout_width="match_parent" android:layout_height="48dp"
+                    android:text="Add to Log" android:textSize="14sp" android:textColor="#FFFFFF"
+                    android:background="#A100FF" android:minWidth="0dp" android:minHeight="0dp"/>
+            </LinearLayout>
+
+            <!-- Manual Section -->
+            <LinearLayout android:id="@+id/llManualSection"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:background="#141419"
+                android:layout_margin="16dp" android:padding="16dp">
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="MANUAL ENTRY" android:textSize="9sp" android:textColor="#5C5C66"
+                    android:letterSpacing="0.12" android:layout_marginBottom="12dp"/>
+
+                <EditText android:id="@+id/etManualName"
+                    android:layout_width="match_parent" android:layout_height="44dp"
+                    android:hint="Food name" android:textColor="#F4F4F6" android:textColorHint="#5C5C66"
+                    android:textSize="13sp" android:background="#0A0A0B"
+                    android:paddingStart="10dp" android:paddingEnd="10dp"
+                    android:layout_marginBottom="8dp"/>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:layout_marginBottom="8dp">
+                    <EditText android:id="@+id/etManualCal"
+                        android:layout_width="0dp" android:layout_height="44dp" android:layout_weight="1"
+                        android:hint="Calories" android:textColor="#F4F4F6" android:textColorHint="#5C5C66"
+                        android:textSize="13sp" android:background="#0A0A0B"
+                        android:paddingStart="10dp" android:paddingEnd="10dp"
+                        android:inputType="numberDecimal" android:layout_marginEnd="4dp"/>
+                    <EditText android:id="@+id/etManualProtein"
+                        android:layout_width="0dp" android:layout_height="44dp" android:layout_weight="1"
+                        android:hint="Protein g" android:textColor="#F4F4F6" android:textColorHint="#5C5C66"
+                        android:textSize="13sp" android:background="#0A0A0B"
+                        android:paddingStart="10dp" android:paddingEnd="10dp"
+                        android:inputType="numberDecimal" android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp"/>
+                    <EditText android:id="@+id/etManualCarbs"
+                        android:layout_width="0dp" android:layout_height="44dp" android:layout_weight="1"
+                        android:hint="Carbs g" android:textColor="#F4F4F6" android:textColorHint="#5C5C66"
+                        android:textSize="13sp" android:background="#0A0A0B"
+                        android:paddingStart="10dp" android:paddingEnd="10dp"
+                        android:inputType="numberDecimal" android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp"/>
+                    <EditText android:id="@+id/etManualFat"
+                        android:layout_width="0dp" android:layout_height="44dp" android:layout_weight="1"
+                        android:hint="Fat g" android:textColor="#F4F4F6" android:textColorHint="#5C5C66"
+                        android:textSize="13sp" android:background="#0A0A0B"
+                        android:paddingStart="10dp" android:paddingEnd="10dp"
+                        android:inputType="numberDecimal" android:layout_marginStart="4dp"/>
+                </LinearLayout>
+                <Button android:id="@+id/btnAddManual"
+                    android:layout_width="match_parent" android:layout_height="44dp"
+                    android:text="Add Manual Entry" android:textSize="13sp" android:textColor="#5C5C66"
+                    android:background="#1A1A20" android:minWidth="0dp" android:minHeight="0dp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

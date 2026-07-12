@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#101013">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Header -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:background="#0A0A0B"
+            android:padding="16dp" android:gravity="center_vertical">
+            <Button android:id="@+id/btnBack" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:text="‹" android:textSize="20sp"
+                android:background="@android:color/transparent" android:textColor="#9A9AA3"
+                android:minWidth="0dp" android:minHeight="0dp" android:padding="8dp"
+                android:layout_marginEnd="8dp"/>
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="Settings" android:textSize="18sp"
+                android:textColor="#F4F4F6" android:textStyle="bold"/>
+        </LinearLayout>
+
+        <!-- AI Config Card -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:background="#141419"
+            android:layout_margin="16dp" android:padding="16dp">
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="AI CONFIGURATION" android:textSize="9sp" android:textColor="#A100FF"
+                android:letterSpacing="0.14" android:layout_marginBottom="12dp"/>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Model: claude-haiku-4-5-20251001"
+                android:textSize="11sp" android:textColor="#5C5C66" android:layout_marginBottom="8dp"/>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <EditText android:id="@+id/etApiKey"
+                    android:layout_width="0dp" android:layout_height="44dp" android:layout_weight="1"
+                    android:hint="Claude API Key" android:textColor="#F4F4F6"
+                    android:textColorHint="#5C5C66" android:background="#0A0A0B"
+                    android:paddingStart="10dp" android:paddingEnd="10dp"
+                    android:inputType="textPassword" android:singleLine="true"/>
+                <Button android:id="@+id/btnToggleApiKey"
+                    android:layout_width="44dp" android:layout_height="44dp"
+                    android:text="👁" android:textSize="14sp"
+                    android:background="#0A0A0B" android:layout_marginStart="4dp"
+                    android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp"/>
+            </LinearLayout>
+
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="Get your API key from console.anthropic.com"
+                android:textSize="10sp" android:textColor="#5C5C66"
+                android:layout_marginTop="6dp"/>
+        </LinearLayout>
+
+        <!-- Body Profile Card -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:background="#141419"
+            android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp" android:padding="16dp">
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="BODY PROFILE" android:textSize="9sp" android:textColor="#D9B96A"
+                android:letterSpacing="0.14" android:layout_marginBottom="12dp"/>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:layout_marginBottom="8dp">
+                <EditText android:id="@+id/etHeight"
+                    android:layout_width="0dp" android:layout_height="44dp" android:layout_weight="1"
+                    android:hint="Height (cm)" android:textColor="#F4F4F6"
+                    android:textColorHint="#5C5C66" android:background="#0A0A0B"
+                    android:paddingStart="10dp" android:inputType="number"
+                    android:layout_marginEnd="4dp"/>
+                <EditText android:id="@+id/etWeight"
+                    android:layout_width="0dp" android:layout_height="44dp" android:layout_weight="1"
+                    android:hint="Weight (kg)" android:textColor="#F4F4F6"
+                    android:textColorHint="#5C5C66" android:background="#0A0A0B"
+                    android:paddingStart="10dp" android:inputType="numberDecimal"
+                    android:layout_marginStart="4dp"/>
+            </LinearLayout>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="DAILY GOALS" android:textSize="9sp" android:textColor="#5C5C66"
+                android:letterSpacing="0.12" android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"/>
+
+            <EditText android:id="@+id/etCalGoal"
+                android:layout_width="match_parent" android:layout_height="44dp"
+                android:hint="Calorie goal (kcal)" android:textColor="#F4F4F6"
+                android:textColorHint="#5C5C66" android:background="#0A0A0B"
+                android:paddingStart="10dp" android:inputType="number"
+                android:layout_marginBottom="8dp"/>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <EditText android:id="@+id/etProteinGoal"
+                    android:layout_width="0dp" android:layout_height="44dp" android:layout_weight="1"
+                    android:hint="Protein (g)" android:textColor="#F4F4F6"
+                    android:textColorHint="#5C5C66" android:background="#0A0A0B"
+                    android:paddingStart="10dp" android:inputType="number"
+                    android:layout_marginEnd="4dp"/>
+                <EditText android:id="@+id/etCarbsGoal"
+                    android:layout_width="0dp" android:layout_height="44dp" android:layout_weight="1"
+                    android:hint="Carbs (g)" android:textColor="#F4F4F6"
+                    android:textColorHint="#5C5C66" android:background="#0A0A0B"
+                    android:paddingStart="10dp" android:inputType="number"
+                    android:layout_marginStart="4dp" android:layout_marginEnd="4dp"/>
+                <EditText android:id="@+id/etFatGoal"
+                    android:layout_width="0dp" android:layout_height="44dp" android:layout_weight="1"
+                    android:hint="Fat (g)" android:textColor="#F4F4F6"
+                    android:textColorHint="#5C5C66" android:background="#0A0A0B"
+                    android:paddingStart="10dp" android:inputType="number"
+                    android:layout_marginStart="4dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Save -->
+        <Button android:id="@+id/btnSave"
+            android:layout_width="match_parent" android:layout_height="52dp"
+            android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="Save Settings" android:textSize="15sp" android:textColor="#FFFFFF"
+            android:background="#A100FF"/>
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#101013">
+
+    <!-- Header -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:background="#0A0A0B"
+        android:padding="16dp" android:gravity="center_vertical">
+        <Button android:id="@+id/btnBack" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:text="‹" android:textSize="20sp"
+            android:background="@android:color/transparent" android:textColor="#9A9AA3"
+            android:minWidth="0dp" android:minHeight="0dp" android:padding="8dp"
+            android:layout_marginEnd="8dp"/>
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:orientation="vertical">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Snap &amp; Log" android:textSize="18sp"
+                android:textColor="#F4F4F6" android:textStyle="bold"/>
+            <TextView android:id="@+id/tvAIStatus" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:text="AI will identify food from photo"
+                android:textSize="11sp" android:textColor="#5C5C66"/>
+        </LinearLayout>
+        <Button android:id="@+id/btnAIToggle"
+            android:layout_width="wrap_content" android:layout_height="32dp"
+            android:text="AI: ON" android:textSize="11sp" android:textColor="#A100FF"
+            android:background="#1F0A33" android:paddingStart="10dp" android:paddingEnd="10dp"
+            android:minWidth="0dp" android:minHeight="0dp"/>
+    </LinearLayout>
+
+    <!-- Preview -->
+    <ImageView android:id="@+id/ivPreview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#0A0A0B"
+        android:scaleType="centerCrop"
+        android:src="@android:drawable/ic_menu_camera"/>
+
+    <!-- Buttons -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:padding="16dp" android:layout_marginTop="1dp">
+        <Button android:id="@+id/btnCamera"
+            android:layout_width="0dp" android:layout_height="52dp" android:layout_weight="1"
+            android:text="📷 Camera" android:textSize="14sp" android:textColor="#FFFFFF"
+            android:background="#A100FF" android:layout_marginEnd="4dp"
+            android:minWidth="0dp" android:minHeight="0dp"/>
+        <Button android:id="@+id/btnGallery"
+            android:layout_width="0dp" android:layout_height="52dp" android:layout_weight="1"
+            android:text="🖼 Gallery" android:textSize="14sp" android:textColor="#9A9AA3"
+            android:background="#141419" android:layout_marginStart="4dp"
+            android:minWidth="0dp" android:minHeight="0dp"/>
+    </LinearLayout>
+
+    <!-- Result card -->
+    <LinearLayout android:id="@+id/llResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#141419"
+        android:padding="16dp"
+        android:visibility="gone">
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="IDENTIFIED FOOD" android:textSize="9sp" android:textColor="#5C5C66"
+            android:letterSpacing="0.12" android:layout_marginBottom="6dp"/>
+
+        <TextView android:id="@+id/tvFoodName"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="—" android:textSize="18sp" android:textColor="#F4F4F6"
+            android:layout_marginBottom="4dp"/>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:gravity="center_vertical">
+            <TextView android:id="@+id/tvCalResult"
+                android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                android:text="—" android:textSize="22sp" android:textColor="#C86BFF"
+                android:textStyle="bold"/>
+            <TextView android:id="@+id/tvMacroResult"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="—" android:textSize="12sp" android:textColor="#5C5C66"/>
+        </LinearLayout>
+
+        <Button android:id="@+id/btnAddToLog"
+            android:layout_width="match_parent" android:layout_height="48dp"
+            android:layout_marginTop="12dp"
+            android:text="Add to Log" android:textSize="14sp" android:textColor="#FFFFFF"
+            android:background="#A100FF" android:visibility="gone"
+            android:minWidth="0dp" android:minHeight="0dp"/>
+    </LinearLayout>
+
+</LinearLayout>

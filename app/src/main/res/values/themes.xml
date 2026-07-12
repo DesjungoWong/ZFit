@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ZFit dark theme - no dynamic colors, hardcoded palette -->
+    <style name="Theme.ZFit.Base" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="android:windowBackground">@color/colorBg2</item>
+        <item name="android:statusBarColor">@color/colorBg</item>
+        <item name="android:navigationBarColor">@color/colorBg</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="colorPrimary">@color/colorPurple</item>
+        <item name="colorPrimaryVariant">@color/colorPurpleDim</item>
+        <item name="colorOnPrimary">@color/colorWhite</item>
+        <item name="colorSecondary">@color/colorGold</item>
+        <item name="colorOnSecondary">@color/colorBg</item>
+        <item name="colorSurface">@color/colorPanel</item>
+        <item name="colorOnSurface">@color/colorTxt</item>
+        <item name="colorError">@color/colorRed</item>
+        <item name="colorOnError">@color/colorWhite</item>
+        <item name="android:colorBackground">@color/colorBg2</item>
+        <item name="colorOnBackground">@color/colorTxt</item>
+        <item name="android:textColorPrimary">@color/colorTxt</item>
+        <item name="android:textColorSecondary">@color/colorMut</item>
+        <item name="materialButtonStyle">@style/Widget.ZFit.Button.Primary</item>
+        <item name="chipStyle">@style/Widget.ZFit.Chip</item>
+    </style>
+</resources>

@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#101013">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Header -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:background="#0A0A0B"
+            android:padding="16dp" android:gravity="center_vertical">
+            <Button android:id="@+id/btnBack" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:text="‹"
+                android:textSize="20sp" android:background="@android:color/transparent"
+                android:textColor="#9A9AA3" android:minWidth="0dp" android:minHeight="0dp"
+                android:padding="8dp" android:layout_marginEnd="8dp"/>
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:text="Dashboard"
+                android:textSize="18sp" android:textColor="#F4F4F6" android:textStyle="bold"/>
+        </LinearLayout>
+
+        <!-- Tabs -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:background="#141419"
+            android:layout_marginBottom="1dp">
+            <TextView android:id="@+id/tvTabDaily" android:layout_width="0dp"
+                android:layout_height="wrap_content" android:layout_weight="1"
+                android:text="Daily" android:textSize="13sp" android:textColor="#A100FF"
+                android:gravity="center" android:padding="14dp"/>
+            <TextView android:id="@+id/tvTabWeekly" android:layout_width="0dp"
+                android:layout_height="wrap_content" android:layout_weight="1"
+                android:text="Weekly" android:textSize="13sp" android:textColor="#5C5C66"
+                android:gravity="center" android:padding="14dp"/>
+            <TextView android:id="@+id/tvTabMonthly" android:layout_width="0dp"
+                android:layout_height="wrap_content" android:layout_weight="1"
+                android:text="Monthly" android:textSize="13sp" android:textColor="#5C5C66"
+                android:gravity="center" android:padding="14dp"/>
+            <TextView android:id="@+id/tvTabYearly" android:layout_width="0dp"
+                android:layout_height="wrap_content" android:layout_weight="1"
+                android:text="Yearly" android:textSize="13sp" android:textColor="#5C5C66"
+                android:gravity="center" android:padding="14dp"/>
+        </LinearLayout>
+
+        <!-- Health Score Card -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:background="#141419"
+            android:margin="16dp" android:layout_margin="16dp" android:padding="20dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="HEALTH SCORE" android:textSize="9sp" android:textColor="#5C5C66"
+                android:letterSpacing="0.14" android:layout_marginBottom="8dp"/>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:gravity="center_vertical"
+                android:layout_marginBottom="10dp">
+                <TextView android:id="@+id/tvHealthScore" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:text="0"
+                    android:textSize="48sp" android:textColor="#F4F4F6" android:textStyle="bold"
+                    android:layout_marginEnd="16dp"/>
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:orientation="vertical">
+                    <TextView android:id="@+id/tvScoreLabel" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="—"
+                        android:textSize="16sp" android:textColor="#9A9AA3"
+                        android:layout_marginBottom="4dp"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="out of 100" android:textSize="11sp" android:textColor="#5C5C66"/>
+                </LinearLayout>
+            </LinearLayout>
+            <ProgressBar android:id="@+id/pbScore" style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent" android:layout_height="6dp"
+                android:max="100" android:progressDrawable="@drawable/progress_purple"/>
+        </LinearLayout>
+
+        <!-- Metrics Grid -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:paddingStart="16dp" android:paddingEnd="16dp">
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:layout_marginBottom="4dp">
+
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:orientation="vertical"
+                    android:background="#141419" android:padding="14dp" android:layout_marginEnd="4dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="CALORIES" android:textSize="9sp" android:textColor="#5C5C66"
+                        android:letterSpacing="0.1" android:layout_marginBottom="6dp"/>
+                    <TextView android:id="@+id/tvCalVal" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="—"
+                        android:textSize="13sp" android:textColor="#C86BFF"/>
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:orientation="vertical"
+                    android:background="#141419" android:padding="14dp" android:layout_marginStart="4dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="STEPS" android:textSize="9sp" android:textColor="#5C5C66"
+                        android:letterSpacing="0.1" android:layout_marginBottom="6dp"/>
+                    <TextView android:id="@+id/tvStepsVal" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="—"
+                        android:textSize="13sp" android:textColor="#4FD1A0"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:layout_marginBottom="4dp">
+
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:orientation="vertical"
+                    android:background="#141419" android:padding="14dp" android:layout_marginEnd="4dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="SLEEP" android:textSize="9sp" android:textColor="#5C5C66"
+                        android:letterSpacing="0.1" android:layout_marginBottom="6dp"/>
+                    <TextView android:id="@+id/tvSleepVal" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="—"
+                        android:textSize="13sp" android:textColor="#5C7AFF"/>
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:orientation="vertical"
+                    android:background="#141419" android:padding="14dp" android:layout_marginStart="4dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="WATER" android:textSize="9sp" android:textColor="#5C5C66"
+                        android:letterSpacing="0.1" android:layout_marginBottom="6dp"/>
+                    <TextView android:id="@+id/tvWaterVal" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="—"
+                        android:textSize="13sp" android:textColor="#5C7AFF"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:layout_marginBottom="16dp">
+
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:orientation="vertical"
+                    android:background="#141419" android:padding="14dp" android:layout_marginEnd="4dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="HEART RATE" android:textSize="9sp" android:textColor="#5C5C66"
+                        android:letterSpacing="0.1" android:layout_marginBottom="6dp"/>
+                    <TextView android:id="@+id/tvHRVal" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="—"
+                        android:textSize="13sp" android:textColor="#FF5C7A"/>
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:orientation="vertical"
+                    android:background="#141419" android:padding="14dp" android:layout_marginStart="4dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="EXERCISE" android:textSize="9sp" android:textColor="#5C5C66"
+                        android:letterSpacing="0.1" android:layout_marginBottom="6dp"/>
+                    <TextView android:id="@+id/tvExerciseVal" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="—"
+                        android:textSize="13sp" android:textColor="#E8A838"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Bar Chart -->
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="7-DAY CALORIE CHART" android:textSize="9sp" android:textColor="#5C5C66"
+            android:letterSpacing="0.14" android:paddingStart="16dp" android:paddingEnd="16dp"
+            android:paddingBottom="8dp"/>
+
+        <LinearLayout android:id="@+id/llBarChart"
+            android:layout_width="match_parent" android:layout_height="200dp"
+            android:orientation="horizontal" android:gravity="bottom"
+            android:background="#141419" android:padding="12dp"
+            android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- AI Advisory Button -->
+        <Button android:id="@+id/btnAIAdvisory"
+            android:layout_width="match_parent" android:layout_height="52dp"
+            android:layout_margin="16dp"
+            android:text="Get AI Health Advisory"
+            android:textSize="14sp" android:textColor="#FFFFFF"
+            android:background="#A100FF"/>
+
+    </LinearLayout>
+</ScrollView>
