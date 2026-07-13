@@ -1,4 +1,4 @@
-﻿package com.zfit.app.adapters;
+package com.zfit.app.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;

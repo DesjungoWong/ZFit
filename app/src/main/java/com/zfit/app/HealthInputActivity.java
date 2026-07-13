@@ -1,4 +1,4 @@
-﻿package com.zfit.app;
+package com.zfit.app;
 
 import android.os.Bundle;
 import android.widget.Button;

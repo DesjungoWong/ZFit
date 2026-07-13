@@ -1,4 +1,4 @@
-﻿package com.zfit.app;
+package com.zfit.app;
 
 import android.content.Intent;
 import android.content.SharedPreferences;

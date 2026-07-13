@@ -1,4 +1,4 @@
-﻿package com.zfit.app.db;
+package com.zfit.app.db;
 
 import android.content.ContentValues;
 import android.content.Context;

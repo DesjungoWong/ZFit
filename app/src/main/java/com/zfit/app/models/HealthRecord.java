@@ -1,4 +1,4 @@
-﻿package com.zfit.app.models;
+package com.zfit.app.models;
 
 public class HealthRecord {
     private long id;
