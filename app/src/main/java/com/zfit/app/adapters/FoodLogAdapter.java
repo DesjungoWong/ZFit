@@ -1,9 +1,9 @@
 package com.zfit.app.adapters;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -44,7 +44,11 @@ public class FoodLogAdapter extends RecyclerView.Adapter<FoodLogAdapter.ViewHold
         holder.tvCalories.setText(entry.getCalories() + " kcal");
         holder.tvMacros.setText(String.format("P %.0fg  C %.0fg  F %.0fg",
                 entry.getProtein(), entry.getCarbs(), entry.getFat()));
-        holder.tvSource.setText(entry.getSource() != null ? entry.getSource().toUpperCase() : "");
+        if (holder.btnDelete != null) {
+            holder.btnDelete.setOnClickListener(v -> {
+                if (deleteListener != null) deleteListener.onDelete(entry);
+            });
+        }
         holder.itemView.setOnLongClickListener(v -> {
             if (deleteListener != null) deleteListener.onDelete(entry);
             return true;
@@ -61,7 +65,8 @@ public class FoodLogAdapter extends RecyclerView.Adapter<FoodLogAdapter.ViewHold
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvFoodName, tvMealType, tvCalories, tvMacros, tvSource;
+        TextView tvFoodName, tvMealType, tvCalories, tvMacros;
+        Button btnDelete;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -69,7 +74,7 @@ public class FoodLogAdapter extends RecyclerView.Adapter<FoodLogAdapter.ViewHold
             tvMealType = itemView.findViewById(R.id.tvMealType);
             tvCalories = itemView.findViewById(R.id.tvCalories);
             tvMacros = itemView.findViewById(R.id.tvMacros);
-            tvSource = itemView.findViewById(R.id.tvSource);
+            btnDelete = itemView.findViewById(R.id.btnDelete);
         }
     }
 }

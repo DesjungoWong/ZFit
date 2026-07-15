@@ -15,7 +15,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import com.zfit.app.db.FoodDbHelper;
 import com.zfit.app.models.FoodEntry;
@@ -117,6 +119,7 @@ public class AddFoodActivity extends AppCompatActivity {
         findViewById(R.id.btnAddToLog).setOnClickListener(v -> addToLog());
         findViewById(R.id.btnAddManual).setOnClickListener(v -> addManual());
 
+        setupBottomNav();
         // Show SG foods by default
         showSuggestions(filterSGFoods(""));
     }
@@ -362,5 +365,18 @@ public class AddFoodActivity extends AppCompatActivity {
             Toast.makeText(this, "Invalid number format", Toast.LENGTH_SHORT).show();
         }
     }
-}
 
+    private void setupBottomNav() {
+        BottomNavigationView nav = findViewById(R.id.bottomNav);
+        if (nav == null) return;
+        nav.setSelectedItemId(R.id.nav_log);
+        nav.setOnItemSelectedListener(item -> {
+            int id = item.getItemId();
+            if (id == R.id.nav_home) { startActivity(new Intent(this, MainActivity.class)); finish(); }
+            else if (id == R.id.nav_snap) { startActivity(new Intent(this, CameraActivity.class)); finish(); }
+            else if (id == R.id.nav_health) { startActivity(new Intent(this, HealthDashboardActivity.class)); finish(); }
+            else if (id == R.id.nav_report) { startActivity(new Intent(this, WeeklyReportActivity.class)); finish(); }
+            return false;
+        });
+    }
+}

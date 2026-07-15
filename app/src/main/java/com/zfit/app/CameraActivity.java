@@ -11,6 +11,8 @@ import android.provider.MediaStore;
 import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -21,6 +23,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.tabs.TabLayout;
 import com.zfit.app.db.FoodDbHelper;
 import com.zfit.app.models.FoodEntry;
 
@@ -41,102 +45,146 @@ public class CameraActivity extends AppCompatActivity {
     private static final int REQ_GALLERY = 102;
     private static final int REQ_CAMERA_PERM = 201;
 
-    private ImageView ivPreview;
-    private TextView tvAIStatus, tvFoodName, tvCalResult, tvMacroResult;
-    private LinearLayout llResult;
-    private Button btnAddToLog, btnAIToggle;
-    private Bitmap capturedBitmap;
+    // Camera tab views
+    private LinearLayout panelCamera;
+    private ImageView ivCameraPreview;
+    private LinearLayout llCameraResult;
+    private TextView tvCameraFoodName, tvCameraKcal, tvCameraMacros;
+
+    // Gallery tab views
+    private LinearLayout panelGallery;
+    private ImageView ivGalleryPreview;
+    private LinearLayout llGalleryResult;
+    private TextView tvGalleryFoodName, tvGalleryKcal, tvGalleryMacros;
+
+    // Describe tab views
+    private LinearLayout panelDescribe;
+    private EditText etDescribePrompt;
+    private LinearLayout llDescribeResult;
+    private TextView tvDescribeFoodName, tvDescribeKcal, tvDescribeMacros;
+
+    private int currentTab = 0; // 0=camera, 1=gallery, 2=describe
     private String currentDate;
     private FoodDbHelper dbHelper;
-    private boolean aiEnabled = true;
     private static final String PREFS = "de_prefs";
 
-    // Detected food
-    private String detectedFoodName = "";
-    private int detectedCalories = 0;
-    private float detectedProtein = 0, detectedCarbs = 0, detectedFat = 0;
+    // Detected food data per tab
+    private String[] foodName = {"", "", ""};
+    private int[] foodKcal = {0, 0, 0};
+    private float[] foodProtein = {0, 0, 0};
+    private float[] foodCarbs = {0, 0, 0};
+    private float[] foodFat = {0, 0, 0};
 
-    // SG Food fallback list
     private static final String[][] SG_FOODS = {
         {"Chicken Rice", "480", "28", "54", "16"},
         {"Char Kway Teow", "744", "16", "96", "32"},
         {"Nasi Lemak with egg", "644", "22", "74", "30"},
         {"Laksa", "589", "22", "68", "26"},
-        {"Roti Prata plain", "301", "8", "44", "11"},
-        {"Mee Goreng", "660", "18", "92", "24"},
-        {"Wanton Mee", "451", "20", "62", "14"},
-        {"Bak Chor Mee", "467", "22", "60", "16"},
-        {"Hokkien Mee", "560", "24", "72", "20"},
-        {"Kaya Toast set", "370", "12", "52", "14"},
-        {"Chicken Biryani", "680", "32", "86", "22"},
-        {"Fish Head Curry", "420", "38", "12", "24"},
-        {"Prawn Noodle Soup", "380", "24", "48", "10"},
-        {"Bak Kut Teh", "310", "28", "6", "18"},
-        {"Dim Sum Har Gow 3pc", "120", "8", "14", "4"},
-        {"Char Siu Bao steamed", "150", "7", "22", "4"},
-        {"Ice Kachang", "240", "3", "56", "2"},
-        {"Chendol", "310", "3", "62", "6"},
-        {"Teh Tarik", "140", "4", "24", "4"},
-        {"Milo", "163", "5", "28", "4"},
-        {"Kopi O", "15", "0", "3", "0"},
-        {"Kopi C", "80", "3", "10", "3"},
-        {"Satay chicken", "62", "7", "2", "3"},
-        {"Satay beef", "68", "6", "3", "4"},
-        {"Rojak", "280", "6", "38", "12"}
+        {"Roti Prata plain", "301", "8", "44", "11"}
     };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
+
         dbHelper = FoodDbHelper.getInstance(this);
         currentDate = getIntent().getStringExtra("date");
         if (currentDate == null)
             currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.US).format(Calendar.getInstance().getTime());
 
-        ivPreview = findViewById(R.id.ivPreview);
-        tvAIStatus = findViewById(R.id.tvAIStatus);
-        tvFoodName = findViewById(R.id.tvFoodName);
-        tvCalResult = findViewById(R.id.tvCalResult);
-        tvMacroResult = findViewById(R.id.tvMacroResult);
-        llResult = findViewById(R.id.llResult);
-        btnAddToLog = findViewById(R.id.btnAddToLog);
-        btnAIToggle = findViewById(R.id.btnAIToggle);
+        panelCamera = findViewById(R.id.panelCamera);
+        ivCameraPreview = findViewById(R.id.ivCameraPreview);
+        llCameraResult = findViewById(R.id.llCameraResult);
+        tvCameraFoodName = findViewById(R.id.tvCameraFoodName);
+        tvCameraKcal = findViewById(R.id.tvCameraKcal);
+        tvCameraMacros = findViewById(R.id.tvCameraMacros);
 
-        SharedPreferences prefs = getSharedPreferences(PREFS, MODE_PRIVATE);
-        String apiKey = prefs.getString("claude_api_key", "");
-        aiEnabled = !apiKey.isEmpty();
-        updateAIToggle();
+        panelGallery = findViewById(R.id.panelGallery);
+        ivGalleryPreview = findViewById(R.id.ivGalleryPreview);
+        llGalleryResult = findViewById(R.id.llGalleryResult);
+        tvGalleryFoodName = findViewById(R.id.tvGalleryFoodName);
+        tvGalleryKcal = findViewById(R.id.tvGalleryKcal);
+        tvGalleryMacros = findViewById(R.id.tvGalleryMacros);
 
-        btnAIToggle.setOnClickListener(v -> {
-            aiEnabled = !aiEnabled;
-            updateAIToggle();
+        panelDescribe = findViewById(R.id.panelDescribe);
+        etDescribePrompt = findViewById(R.id.etDescribePrompt);
+        llDescribeResult = findViewById(R.id.llDescribeResult);
+        tvDescribeFoodName = findViewById(R.id.tvDescribeFoodName);
+        tvDescribeKcal = findViewById(R.id.tvDescribeKcal);
+        tvDescribeMacros = findViewById(R.id.tvDescribeMacros);
+
+        TabLayout tabLayout = findViewById(R.id.snapTabLayout);
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override public void onTabSelected(TabLayout.Tab tab) { switchTab(tab.getPosition()); }
+            @Override public void onTabUnselected(TabLayout.Tab tab) {}
+            @Override public void onTabReselected(TabLayout.Tab tab) {}
         });
 
-        findViewById(R.id.btnCamera).setOnClickListener(v -> {
+        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
+
+        // Camera tab buttons
+        findViewById(R.id.btnCameraCapture).setOnClickListener(v -> {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
                     != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.CAMERA}, REQ_CAMERA_PERM);
+                    new String[]{Manifest.permission.CAMERA}, REQ_CAMERA_PERM);
             } else {
                 launchCamera();
             }
         });
 
-        findViewById(R.id.btnGallery).setOnClickListener(v -> {
-            Intent intent = new Intent(Intent.ACTION_PICK);
-            intent.setType("image/*");
-            startActivityForResult(intent, REQ_GALLERY);
-        });
+        // Gallery tab buttons
+        findViewById(R.id.btnGalleryPick).setOnClickListener(v -> launchGallery());
+        findViewById(R.id.btnGalleryConfirm).setOnClickListener(v -> logFood(1));
 
-        btnAddToLog.setOnClickListener(v -> addToLog());
-        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
+        // Describe tab buttons
+        findViewById(R.id.btnDescribeAnalyze).setOnClickListener(v -> analyzeDescription());
+        findViewById(R.id.btnDescribeConfirm).setOnClickListener(v -> logFood(2));
+
+        // Quick-tag chips append to prompt
+        findViewById(R.id.chipHawker).setOnClickListener(v -> appendTag("hawker portion"));
+        findViewById(R.id.chipRestaurant).setOnClickListener(v -> appendTag("restaurant serving"));
+        findViewById(R.id.chipHomemade).setOnClickListener(v -> appendTag("homemade"));
+
+        setupBottomNav();
+        switchTab(0);
     }
 
-    private void updateAIToggle() {
-        btnAIToggle.setText(aiEnabled ? "AI: ON" : "AI: OFF");
-        btnAIToggle.setBackgroundColor(aiEnabled ? 0xFF1F0A33 : 0xFF141419);
-        tvAIStatus.setText(aiEnabled ? "AI will identify food from photo" : "Manual food selection active");
+    private void setupBottomNav() {
+        BottomNavigationView nav = findViewById(R.id.bottomNav);
+        if (nav == null) return;
+        nav.setSelectedItemId(R.id.nav_snap);
+        nav.setOnItemSelectedListener(item -> {
+            int id = item.getItemId();
+            if (id == R.id.nav_home) {
+                startActivity(new Intent(this, MainActivity.class));
+                finish();
+            } else if (id == R.id.nav_log) {
+                startActivity(new Intent(this, AddFoodActivity.class));
+                finish();
+            } else if (id == R.id.nav_health) {
+                startActivity(new Intent(this, HealthDashboardActivity.class));
+                finish();
+            } else if (id == R.id.nav_report) {
+                startActivity(new Intent(this, WeeklyReportActivity.class));
+                finish();
+            }
+            return false;
+        });
+    }
+
+    private void switchTab(int tab) {
+        currentTab = tab;
+        panelCamera.setVisibility(tab == 0 ? View.VISIBLE : View.GONE);
+        panelGallery.setVisibility(tab == 1 ? View.VISIBLE : View.GONE);
+        panelDescribe.setVisibility(tab == 2 ? View.VISIBLE : View.GONE);
+    }
+
+    private void appendTag(String tag) {
+        String current = etDescribePrompt.getText().toString().trim();
+        etDescribePrompt.setText(current.isEmpty() ? tag : current + ", " + tag);
+        etDescribePrompt.setSelection(etDescribePrompt.getText().length());
     }
 
     private void launchCamera() {
@@ -144,171 +192,276 @@ public class CameraActivity extends AppCompatActivity {
         startActivityForResult(intent, REQ_CAMERA);
     }
 
+    private void launchGallery() {
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        startActivityForResult(intent, REQ_GALLERY);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode != RESULT_OK || data == null) return;
 
+        Bitmap bitmap = null;
         if (requestCode == REQ_CAMERA) {
-            capturedBitmap = (Bitmap) data.getExtras().get("data");
+            bitmap = (Bitmap) data.getExtras().get("data");
+            if (bitmap != null) ivCameraPreview.setImageBitmap(bitmap);
         } else if (requestCode == REQ_GALLERY) {
             try {
                 Uri uri = data.getData();
-                capturedBitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                if (bitmap != null) {
+                    ivGalleryPreview.setImageBitmap(bitmap);
+                    TextView hint = (TextView) ((android.view.ViewGroup) ivGalleryPreview.getParent()).getChildAt(1);
+                    if (hint != null) hint.setVisibility(View.GONE);
+                }
             } catch (Exception e) {
                 Toast.makeText(this, "Error loading image", Toast.LENGTH_SHORT).show();
                 return;
             }
         }
 
-        if (capturedBitmap != null) {
-            ivPreview.setImageBitmap(capturedBitmap);
-            if (aiEnabled) analyzeWithAI();
-            else showManualFoodList();
+        if (bitmap != null) {
+            final int tabIdx = (requestCode == REQ_CAMERA) ? 0 : 1;
+            analyzeImageWithAI(bitmap, tabIdx);
         }
     }
 
-    private void analyzeWithAI() {
-        tvFoodName.setText("Analyzing...");
-        llResult.setVisibility(View.VISIBLE);
-        btnAddToLog.setVisibility(View.GONE);
-
+    private void analyzeImageWithAI(Bitmap bmp, final int tabIdx) {
         SharedPreferences prefs = getSharedPreferences(PREFS, MODE_PRIVATE);
         String apiKey = prefs.getString("claude_api_key", "");
+        if (apiKey.isEmpty()) apiKey = BuildConfig.CLAUDE_API_KEY;
 
-        // Convert bitmap to base64
+        if (apiKey.isEmpty()) {
+            useFallbackFood(tabIdx);
+            return;
+        }
+
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        Bitmap scaled = Bitmap.createScaledBitmap(capturedBitmap,
-                Math.min(capturedBitmap.getWidth(), 512),
-                Math.min(capturedBitmap.getHeight(), 512), true);
+        Bitmap scaled = Bitmap.createScaledBitmap(bmp,
+            Math.min(bmp.getWidth(), 512), Math.min(bmp.getHeight(), 512), true);
         scaled.compress(Bitmap.CompressFormat.JPEG, 70, bos);
-        String b64 = Base64.encodeToString(bos.toByteArray(), Base64.NO_WRAP);
+        final String b64 = Base64.encodeToString(bos.toByteArray(), Base64.NO_WRAP);
+        final String finalApiKey = apiKey;
 
-        new Thread(() -> {
-            try {
-                URL url = new URL("https://api.anthropic.com/v1/messages");
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                conn.setRequestMethod("POST");
-                conn.setRequestProperty("x-api-key", apiKey);
-                conn.setRequestProperty("anthropic-version", "2023-06-01");
-                conn.setRequestProperty("Content-Type", "application/json");
-                conn.setDoOutput(true);
+        showResultLoading(tabIdx, "Analyzing...");
 
-                JSONObject imageSource = new JSONObject();
-                imageSource.put("type", "base64");
-                imageSource.put("media_type", "image/jpeg");
-                imageSource.put("data", b64);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    URL url = new URL("https://api.anthropic.com/v1/messages");
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setRequestMethod("POST");
+                    conn.setRequestProperty("x-api-key", finalApiKey);
+                    conn.setRequestProperty("anthropic-version", "2023-06-01");
+                    conn.setRequestProperty("Content-Type", "application/json");
+                    conn.setDoOutput(true);
 
-                JSONObject imageBlock = new JSONObject();
-                imageBlock.put("type", "image");
-                imageBlock.put("source", imageSource);
+                    JSONObject imageSource = new JSONObject();
+                    imageSource.put("type", "base64");
+                    imageSource.put("media_type", "image/jpeg");
+                    imageSource.put("data", b64);
 
-                JSONObject textBlock = new JSONObject();
-                textBlock.put("type", "text");
-                textBlock.put("text",
-                    "Identify this food and estimate its nutritional content. " +
-                    "Reply in EXACTLY this format:\n" +
-                    "FOOD: [food name]\n" +
-                    "CALORIES: [number]\n" +
-                    "PROTEIN: [number]g\n" +
-                    "CARBS: [number]g\n" +
-                    "FAT: [number]g\n" +
-                    "Only reply with these 5 lines, nothing else.");
+                    JSONObject imageBlock = new JSONObject();
+                    imageBlock.put("type", "image");
+                    imageBlock.put("source", imageSource);
 
-                JSONArray content = new JSONArray();
-                content.put(imageBlock);
-                content.put(textBlock);
+                    JSONObject textBlock = new JSONObject();
+                    textBlock.put("type", "text");
+                    textBlock.put("text",
+                        "Identify this food and estimate calories and macros. " +
+                        "Reply as JSON only: {\"food\":\"name\",\"kcal\":int,\"protein\":int,\"carbs\":int,\"fat\":int,\"confidence\":int}");
 
-                JSONObject msg = new JSONObject();
-                msg.put("role", "user");
-                msg.put("content", content);
+                    JSONArray content = new JSONArray();
+                    content.put(imageBlock);
+                    content.put(textBlock);
 
-                JSONArray messages = new JSONArray();
-                messages.put(msg);
+                    JSONObject msg = new JSONObject();
+                    msg.put("role", "user");
+                    msg.put("content", content);
 
-                JSONObject body = new JSONObject();
-                body.put("model", "claude-haiku-4-5-20251001");
-                body.put("max_tokens", 128);
-                body.put("messages", messages);
+                    JSONObject body = new JSONObject();
+                    body.put("model", "claude-haiku-4-5-20251001");
+                    body.put("max_tokens", 256);
+                    body.put("messages", new JSONArray().put(msg));
 
-                OutputStreamWriter writer = new OutputStreamWriter(conn.getOutputStream());
-                writer.write(body.toString());
-                writer.flush();
+                    OutputStreamWriter writer = new OutputStreamWriter(conn.getOutputStream());
+                    writer.write(body.toString());
+                    writer.flush();
 
-                java.io.BufferedReader reader = new java.io.BufferedReader(
+                    java.io.BufferedReader reader = new java.io.BufferedReader(
                         new java.io.InputStreamReader(conn.getInputStream()));
-                StringBuilder sb = new StringBuilder();
-                String line;
-                while ((line = reader.readLine()) != null) sb.append(line);
+                    StringBuilder sb = new StringBuilder();
+                    String line;
+                    while ((line = reader.readLine()) != null) sb.append(line);
 
-                JSONObject resp = new JSONObject(sb.toString());
-                String text = resp.getJSONArray("content").getJSONObject(0).getString("text");
-                parseAIResponse(text);
-
-            } catch (Exception e) {
-                runOnUiThread(() -> {
-                    tvFoodName.setText("AI error - try manual");
-                    showManualFoodList();
-                });
+                    JSONObject resp = new JSONObject(sb.toString());
+                    String text = resp.getJSONArray("content").getJSONObject(0).getString("text");
+                    // Extract JSON from response
+                    int start = text.indexOf('{');
+                    int end = text.lastIndexOf('}');
+                    if (start >= 0 && end > start) {
+                        JSONObject result = new JSONObject(text.substring(start, end + 1));
+                        final String fn = result.optString("food", "Unknown");
+                        final int fk = result.optInt("kcal", 300);
+                        final int fp = result.optInt("protein", 10);
+                        final int fc = result.optInt("carbs", 30);
+                        final int ff = result.optInt("fat", 10);
+                        runOnUiThread(new Runnable() {
+                            @Override public void run() { updateResultCard(tabIdx, fn, fk, fp, fc, ff); }
+                        });
+                    } else {
+                        runOnUiThread(new Runnable() { @Override public void run() { useFallbackFood(tabIdx); } });
+                    }
+                } catch (Exception e) {
+                    runOnUiThread(new Runnable() { @Override public void run() { useFallbackFood(tabIdx); } });
+                }
             }
         }).start();
     }
 
-    private void parseAIResponse(String text) {
-        String foodName = "Unknown Food";
-        int cal = 300; float p = 10, c = 30, f = 10;
-        for (String line : text.split("\n")) {
-            if (line.startsWith("FOOD:")) foodName = line.substring(5).trim();
-            else if (line.startsWith("CALORIES:")) {
-                try { cal = Integer.parseInt(line.substring(9).trim()); } catch (Exception ignored) {}
-            }
-            else if (line.startsWith("PROTEIN:")) {
-                try { p = Float.parseFloat(line.substring(8).replace("g","").trim()); } catch (Exception ignored) {}
-            }
-            else if (line.startsWith("CARBS:")) {
-                try { c = Float.parseFloat(line.substring(6).replace("g","").trim()); } catch (Exception ignored) {}
-            }
-            else if (line.startsWith("FAT:")) {
-                try { f = Float.parseFloat(line.substring(4).replace("g","").trim()); } catch (Exception ignored) {}
-            }
+    private void analyzeDescription() {
+        String text = etDescribePrompt.getText().toString().trim();
+        if (text.isEmpty()) {
+            Toast.makeText(this, "Enter a food description first", Toast.LENGTH_SHORT).show();
+            return;
         }
-        detectedFoodName = foodName; detectedCalories = cal;
-        detectedProtein = p; detectedCarbs = c; detectedFat = f;
-        final String fn = foodName; final int fc = cal;
-        final float fp = p, fca = c, ff = f;
-        runOnUiThread(() -> {
-            tvFoodName.setText(fn);
-            tvCalResult.setText(fc + " kcal");
-            tvMacroResult.setText(String.format("P %.0fg  C %.0fg  F %.0fg", fp, fca, ff));
-            llResult.setVisibility(View.VISIBLE);
-            btnAddToLog.setVisibility(View.VISIBLE);
-        });
+        SharedPreferences prefs = getSharedPreferences(PREFS, MODE_PRIVATE);
+        String apiKey = prefs.getString("claude_api_key", "");
+        if (apiKey.isEmpty()) apiKey = BuildConfig.CLAUDE_API_KEY;
+
+        if (apiKey.isEmpty()) {
+            useFallbackFood(2);
+            return;
+        }
+        final String finalApiKey = apiKey;
+        final String prompt = "Estimate calories and macros for: " + text +
+            ". Reply as JSON only: {\"food\":\"name\",\"kcal\":int,\"protein\":int,\"carbs\":int,\"fat\":int,\"confidence\":int}";
+
+        showResultLoading(2, "Estimating...");
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    URL url = new URL("https://api.anthropic.com/v1/messages");
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setRequestMethod("POST");
+                    conn.setRequestProperty("x-api-key", finalApiKey);
+                    conn.setRequestProperty("anthropic-version", "2023-06-01");
+                    conn.setRequestProperty("Content-Type", "application/json");
+                    conn.setDoOutput(true);
+
+                    JSONObject msg = new JSONObject();
+                    msg.put("role", "user");
+                    msg.put("content", prompt);
+
+                    JSONObject body = new JSONObject();
+                    body.put("model", "claude-haiku-4-5-20251001");
+                    body.put("max_tokens", 256);
+                    body.put("messages", new JSONArray().put(msg));
+
+                    OutputStreamWriter writer = new OutputStreamWriter(conn.getOutputStream());
+                    writer.write(body.toString());
+                    writer.flush();
+
+                    java.io.BufferedReader reader = new java.io.BufferedReader(
+                        new java.io.InputStreamReader(conn.getInputStream()));
+                    StringBuilder sb = new StringBuilder();
+                    String line;
+                    while ((line = reader.readLine()) != null) sb.append(line);
+
+                    JSONObject resp = new JSONObject(sb.toString());
+                    String responseText = resp.getJSONArray("content").getJSONObject(0).getString("text");
+                    int start = responseText.indexOf('{');
+                    int end = responseText.lastIndexOf('}');
+                    if (start >= 0 && end > start) {
+                        JSONObject result = new JSONObject(responseText.substring(start, end + 1));
+                        final String fn = result.optString("food", text);
+                        final int fk = result.optInt("kcal", 300);
+                        final int fp = result.optInt("protein", 10);
+                        final int fc = result.optInt("carbs", 30);
+                        final int ff = result.optInt("fat", 10);
+                        runOnUiThread(new Runnable() {
+                            @Override public void run() { updateResultCard(2, fn, fk, fp, fc, ff); }
+                        });
+                    } else {
+                        runOnUiThread(new Runnable() { @Override public void run() { useFallbackFood(2); } });
+                    }
+                } catch (Exception e) {
+                    runOnUiThread(new Runnable() { @Override public void run() { useFallbackFood(2); } });
+                }
+            }
+        }).start();
     }
 
-    private void showManualFoodList() {
-        // Show first SG food as default
+    private void showResultLoading(int tabIdx, String msg) {
+        if (tabIdx == 0) {
+            llCameraResult.setVisibility(View.VISIBLE);
+            tvCameraFoodName.setText(msg);
+            tvCameraKcal.setText("");
+            tvCameraMacros.setText("");
+        } else if (tabIdx == 1) {
+            llGalleryResult.setVisibility(View.VISIBLE);
+            tvGalleryFoodName.setText(msg);
+            tvGalleryKcal.setText("");
+            tvGalleryMacros.setText("");
+        } else {
+            llDescribeResult.setVisibility(View.VISIBLE);
+            tvDescribeFoodName.setText(msg);
+            tvDescribeKcal.setText("");
+            tvDescribeMacros.setText("");
+        }
+    }
+
+    private void updateResultCard(int tabIdx, String fn, int fk, int fp, int fc, int ff) {
+        foodName[tabIdx] = fn;
+        foodKcal[tabIdx] = fk;
+        foodProtein[tabIdx] = fp;
+        foodCarbs[tabIdx] = fc;
+        foodFat[tabIdx] = ff;
+
+        String macros = String.format("P %dg  C %dg  F %dg", fp, fc, ff);
+        if (tabIdx == 0) {
+            llCameraResult.setVisibility(View.VISIBLE);
+            tvCameraFoodName.setText(fn);
+            tvCameraKcal.setText(fk + " kcal");
+            tvCameraMacros.setText(macros);
+        } else if (tabIdx == 1) {
+            llGalleryResult.setVisibility(View.VISIBLE);
+            tvGalleryFoodName.setText(fn);
+            tvGalleryKcal.setText(fk + " kcal");
+            tvGalleryMacros.setText(macros);
+        } else {
+            llDescribeResult.setVisibility(View.VISIBLE);
+            tvDescribeFoodName.setText(fn);
+            tvDescribeKcal.setText(fk + " kcal");
+            tvDescribeMacros.setText(macros);
+        }
+    }
+
+    private void useFallbackFood(int tabIdx) {
         if (SG_FOODS.length > 0) {
-            detectedFoodName = SG_FOODS[0][0];
-            detectedCalories = Integer.parseInt(SG_FOODS[0][1]);
-            detectedProtein = Float.parseFloat(SG_FOODS[0][2]);
-            detectedCarbs = Float.parseFloat(SG_FOODS[0][3]);
-            detectedFat = Float.parseFloat(SG_FOODS[0][4]);
+            String fn = SG_FOODS[0][0];
+            int fk = Integer.parseInt(SG_FOODS[0][1]);
+            int fp = Integer.parseInt(SG_FOODS[0][2]);
+            int fc = Integer.parseInt(SG_FOODS[0][3]);
+            int ff = Integer.parseInt(SG_FOODS[0][4]);
+            updateResultCard(tabIdx, fn, fk, fp, fc, ff);
         }
-        runOnUiThread(() -> {
-            tvFoodName.setText(detectedFoodName + " (manual)");
-            tvCalResult.setText(detectedCalories + " kcal");
-            tvMacroResult.setText(String.format("P %.0fg  C %.0fg  F %.0fg",
-                    detectedProtein, detectedCarbs, detectedFat));
-            llResult.setVisibility(View.VISIBLE);
-            btnAddToLog.setVisibility(View.VISIBLE);
-        });
     }
 
-    private void addToLog() {
-        FoodEntry entry = new FoodEntry(currentDate, "Snack", detectedFoodName,
-                detectedCalories, detectedProtein, detectedCarbs, detectedFat, "ai");
+    private void logFood(int tabIdx) {
+        if (foodName[tabIdx].isEmpty()) {
+            Toast.makeText(this, "Analyze food first", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        FoodEntry entry = new FoodEntry(currentDate, "Snack", foodName[tabIdx],
+            foodKcal[tabIdx], foodProtein[tabIdx], foodCarbs[tabIdx], foodFat[tabIdx], "ai");
         dbHelper.insertFoodEntry(entry);
-        Toast.makeText(this, detectedFoodName + " added!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, foodName[tabIdx] + " logged!", Toast.LENGTH_SHORT).show();
         finish();
     }
 

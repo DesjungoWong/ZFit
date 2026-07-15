@@ -1,69 +1,28 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:background="@color/colorPanel"
-    android:padding="12dp"
-    android:layout_marginBottom="1dp">
-
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="2dp">
-
-            <TextView
-                android:id="@+id/tvMealType"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="10sp"
-                android:textColor="#5C5C66"
-                android:letterSpacing="0.1"
-                android:textAllCaps="true"
-                android:layout_marginEnd="8dp"/>
-
-            <TextView
-                android:id="@+id/tvSource"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="9sp"
-                android:textColor="#A100FF"
-                android:background="@color/colorPurpleDim"
-                android:paddingStart="4dp"
-                android:paddingEnd="4dp"
-                android:paddingTop="1dp"
-                android:paddingBottom="1dp"/>
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/tvFoodName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textColor="#F4F4F6"
-            android:layout_marginBottom="2dp"/>
-
-        <TextView
-            android:id="@+id/tvMacros"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="11sp"
-            android:textColor="#5C5C66"/>
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:orientation="vertical" android:background="#141419">
+  <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+      android:orientation="horizontal" android:padding="12dp" android:gravity="center_vertical">
+    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+        android:layout_weight="1" android:orientation="vertical">
+      <TextView android:id="@+id/tvFoodName" android:layout_width="wrap_content" android:layout_height="wrap_content"
+          android:text="Food Name" android:textSize="14sp" android:textColor="#F4F4F6" android:textStyle="bold"/>
+      <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+          android:orientation="horizontal" android:layout_marginTop="2dp">
+        <TextView android:id="@+id/tvMealType" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Breakfast" android:textSize="10sp" android:textColor="#5C5C66"
+            android:layout_marginEnd="8dp"/>
+        <TextView android:id="@+id/tvMacros" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="P 0g  C 0g  F 0g" android:textSize="10sp" android:textColor="#5C5C66"/>
+      </LinearLayout>
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/tvCalories"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="15sp"
-        android:textColor="#C86BFF"
-        android:textStyle="bold"
-        android:layout_gravity="center_vertical"/>
+    <TextView android:id="@+id/tvCalories" android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="0 kcal" android:textSize="15sp" android:textColor="#C86BFF" android:textStyle="bold"
+        android:layout_marginEnd="8dp"/>
+    <Button android:id="@+id/btnDelete" android:layout_width="24dp" android:layout_height="24dp"
+        android:text="x" android:textSize="11sp" android:background="@android:color/transparent"
+        android:textColor="#5C5C66" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp"/>
+  </LinearLayout>
+  <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#17FFFFFF"/>
 </LinearLayout>

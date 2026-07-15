@@ -7,7 +7,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -31,6 +33,7 @@ public class SettingsActivity extends AppCompatActivity {
         etApiKey.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
         loadSettings();
+        setupBottomNav();
 
         findViewById(R.id.btnSave).setOnClickListener(v -> saveSettings());
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
@@ -79,5 +82,19 @@ public class SettingsActivity extends AppCompatActivity {
         editor.apply();
         Toast.makeText(this, "Settings saved!", Toast.LENGTH_SHORT).show();
         finish();
+    }
+
+    private void setupBottomNav() {
+        BottomNavigationView nav = findViewById(R.id.bottomNav);
+        if (nav == null) return;
+        nav.setOnItemSelectedListener(item -> {
+            int id = item.getItemId();
+            if (id == R.id.nav_home) { startActivity(new Intent(this, MainActivity.class)); finish(); }
+            else if (id == R.id.nav_log) { startActivity(new Intent(this, AddFoodActivity.class)); finish(); }
+            else if (id == R.id.nav_snap) { startActivity(new Intent(this, CameraActivity.class)); finish(); }
+            else if (id == R.id.nav_health) { startActivity(new Intent(this, HealthDashboardActivity.class)); finish(); }
+            else if (id == R.id.nav_report) { startActivity(new Intent(this, WeeklyReportActivity.class)); finish(); }
+            return false;
+        });
     }
 }

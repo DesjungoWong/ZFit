@@ -7,7 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.zfit.app.db.FoodDbHelper;
@@ -53,6 +55,7 @@ public class HealthDashboardActivity extends AppCompatActivity {
 
         bindViews();
         setupNavigation();
+        setupBottomNav();
         refreshUI();
     }
 
@@ -190,5 +193,19 @@ public class HealthDashboardActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         refreshUI();
+    }
+
+    private void setupBottomNav() {
+        BottomNavigationView nav = findViewById(R.id.bottomNav);
+        if (nav == null) return;
+        nav.setSelectedItemId(R.id.nav_health);
+        nav.setOnItemSelectedListener(item -> {
+            int id = item.getItemId();
+            if (id == R.id.nav_home) { startActivity(new Intent(this, MainActivity.class)); finish(); }
+            else if (id == R.id.nav_log) { startActivity(new Intent(this, AddFoodActivity.class)); }
+            else if (id == R.id.nav_snap) { startActivity(new Intent(this, CameraActivity.class)); }
+            else if (id == R.id.nav_report) { startActivity(new Intent(this, WeeklyReportActivity.class)); finish(); }
+            return false;
+        });
     }
 }
