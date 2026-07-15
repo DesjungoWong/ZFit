@@ -278,7 +278,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:hint="e.g. chicken rice with dark soy sauce, hawker portion"
-                android:hintTextColor="#5C5C66"
+                android:textColorHint="#5C5C66"
                 android:textColor="#F4F4F6"
                 android:textSize="14sp"
                 android:background="@drawable/bg_edittext"

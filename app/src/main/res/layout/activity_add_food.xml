@@ -68,7 +68,7 @@
             android:layout_height="46dp"
             android:layout_weight="1"
             android:hint="Search foods…"
-            android:hintTextColor="#5C5C66"
+            android:textColorHint="#5C5C66"
             android:textColor="#F4F4F6"
             android:textSize="14sp"
             android:background="@android:color/transparent"
@@ -164,7 +164,7 @@
 
                 <EditText android:id="@+id/etManualName"
                     android:layout_width="match_parent" android:layout_height="46dp"
-                    android:hint="Food name" android:hintTextColor="#5C5C66"
+                    android:hint="Food name" android:textColorHint="#5C5C66"
                     android:textColor="#F4F4F6" android:textSize="14sp"
                     android:background="@drawable/bg_edittext"
                     android:paddingStart="12dp" android:paddingEnd="12dp"
@@ -175,7 +175,7 @@
 
                     <EditText android:id="@+id/etManualCal"
                         android:layout_width="0dp" android:layout_height="46dp" android:layout_weight="1"
-                        android:hint="kcal" android:hintTextColor="#5C5C66"
+                        android:hint="kcal" android:textColorHint="#5C5C66"
                         android:textColor="#F4F4F6" android:textSize="14sp"
                         android:background="@drawable/bg_edittext"
                         android:paddingStart="12dp" android:paddingEnd="12dp"
@@ -183,7 +183,7 @@
 
                     <EditText android:id="@+id/etManualProtein"
                         android:layout_width="0dp" android:layout_height="46dp" android:layout_weight="1"
-                        android:hint="P(g)" android:hintTextColor="#5C5C66"
+                        android:hint="P(g)" android:textColorHint="#5C5C66"
                         android:textColor="#F4F4F6" android:textSize="14sp"
                         android:background="@drawable/bg_edittext"
                         android:paddingStart="12dp" android:paddingEnd="12dp"
@@ -191,7 +191,7 @@
 
                     <EditText android:id="@+id/etManualCarbs"
                         android:layout_width="0dp" android:layout_height="46dp" android:layout_weight="1"
-                        android:hint="C(g)" android:hintTextColor="#5C5C66"
+                        android:hint="C(g)" android:textColorHint="#5C5C66"
                         android:textColor="#F4F4F6" android:textSize="14sp"
                         android:background="@drawable/bg_edittext"
                         android:paddingStart="12dp" android:paddingEnd="12dp"
@@ -199,7 +199,7 @@
 
                     <EditText android:id="@+id/etManualFat"
                         android:layout_width="0dp" android:layout_height="46dp" android:layout_weight="1"
-                        android:hint="F(g)" android:hintTextColor="#5C5C66"
+                        android:hint="F(g)" android:textColorHint="#5C5C66"
                         android:textColor="#F4F4F6" android:textSize="14sp"
                         android:background="@drawable/bg_edittext"
                         android:paddingStart="12dp" android:paddingEnd="12dp"
