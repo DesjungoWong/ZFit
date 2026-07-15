@@ -30,7 +30,7 @@
         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
             android:orientation="horizontal">
           <EditText android:id="@+id/etApiKey" android:layout_width="0dp" android:layout_height="46dp"
-              android:layout_weight="1" android:hint="sk-ant-..." android:hintTextColor="#5C5C66"
+              android:layout_weight="1" android:hint="sk-ant-..." android:textColorHint="#5C5C66"
               android:textColor="#F4F4F6" android:textSize="13sp"
               android:background="@drawable/bg_edittext" android:paddingStart="12dp" android:paddingEnd="12dp"
               android:inputType="textPassword"/>
@@ -52,7 +52,7 @@
               android:text="HEIGHT (cm)" android:textSize="8sp" android:textColor="#5C5C66"
               android:letterSpacing="0.1" android:paddingBottom="4dp"/>
           <EditText android:id="@+id/etHeight" android:layout_width="match_parent" android:layout_height="46dp"
-              android:hint="170" android:hintTextColor="#5C5C66" android:textColor="#F4F4F6" android:textSize="15sp"
+              android:hint="170" android:textColorHint="#5C5C66" android:textColor="#F4F4F6" android:textSize="15sp"
               android:background="@drawable/bg_edittext" android:paddingStart="12dp" android:paddingEnd="12dp"
               android:inputType="number"/>
         </LinearLayout>
@@ -62,7 +62,7 @@
               android:text="WEIGHT (kg)" android:textSize="8sp" android:textColor="#5C5C66"
               android:letterSpacing="0.1" android:paddingBottom="4dp"/>
           <EditText android:id="@+id/etWeight" android:layout_width="match_parent" android:layout_height="46dp"
-              android:hint="70" android:hintTextColor="#5C5C66" android:textColor="#F4F4F6" android:textSize="15sp"
+              android:hint="70" android:textColorHint="#5C5C66" android:textColor="#F4F4F6" android:textSize="15sp"
               android:background="@drawable/bg_edittext" android:paddingStart="12dp" android:paddingEnd="12dp"
               android:inputType="numberDecimal"/>
         </LinearLayout>
@@ -79,7 +79,7 @@
               android:text="CALORIE GOAL" android:textSize="8sp" android:textColor="#5C5C66"
               android:letterSpacing="0.1" android:paddingBottom="4dp"/>
           <EditText android:id="@+id/etCalGoal" android:layout_width="match_parent" android:layout_height="46dp"
-              android:hint="2000" android:hintTextColor="#5C5C66" android:textColor="#F4F4F6" android:textSize="15sp"
+              android:hint="2000" android:textColorHint="#5C5C66" android:textColor="#F4F4F6" android:textSize="15sp"
               android:background="@drawable/bg_edittext" android:paddingStart="12dp" android:paddingEnd="12dp"
               android:inputType="number"/>
         </LinearLayout>
@@ -89,7 +89,7 @@
               android:text="PROTEIN GOAL (g)" android:textSize="8sp" android:textColor="#5C5C66"
               android:letterSpacing="0.1" android:paddingBottom="4dp"/>
           <EditText android:id="@+id/etProteinGoal" android:layout_width="match_parent" android:layout_height="46dp"
-              android:hint="150" android:hintTextColor="#5C5C66" android:textColor="#F4F4F6" android:textSize="15sp"
+              android:hint="150" android:textColorHint="#5C5C66" android:textColor="#F4F4F6" android:textSize="15sp"
               android:background="@drawable/bg_edittext" android:paddingStart="12dp" android:paddingEnd="12dp"
               android:inputType="number"/>
         </LinearLayout>
@@ -102,7 +102,7 @@
               android:text="CARBS GOAL (g)" android:textSize="8sp" android:textColor="#5C5C66"
               android:letterSpacing="0.1" android:paddingBottom="4dp"/>
           <EditText android:id="@+id/etCarbsGoal" android:layout_width="match_parent" android:layout_height="46dp"
-              android:hint="200" android:hintTextColor="#5C5C66" android:textColor="#F4F4F6" android:textSize="15sp"
+              android:hint="200" android:textColorHint="#5C5C66" android:textColor="#F4F4F6" android:textSize="15sp"
               android:background="@drawable/bg_edittext" android:paddingStart="12dp" android:paddingEnd="12dp"
               android:inputType="number"/>
         </LinearLayout>
@@ -112,7 +112,7 @@
               android:text="FAT GOAL (g)" android:textSize="8sp" android:textColor="#5C5C66"
               android:letterSpacing="0.1" android:paddingBottom="4dp"/>
           <EditText android:id="@+id/etFatGoal" android:layout_width="match_parent" android:layout_height="46dp"
-              android:hint="65" android:hintTextColor="#5C5C66" android:textColor="#F4F4F6" android:textSize="15sp"
+              android:hint="65" android:textColorHint="#5C5C66" android:textColor="#F4F4F6" android:textSize="15sp"
               android:background="@drawable/bg_edittext" android:paddingStart="12dp" android:paddingEnd="12dp"
               android:inputType="number"/>
         </LinearLayout>

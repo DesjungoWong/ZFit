@@ -83,7 +83,7 @@
                         android:letterSpacing="0.1" android:paddingBottom="4dp"/>
                     <EditText android:id="@+id/etWeight"
                         android:layout_width="match_parent" android:layout_height="46dp"
-                        android:hint="0.0" android:hintTextColor="#5C5C66"
+                        android:hint="0.0" android:textColorHint="#5C5C66"
                         android:textColor="#F4F4F6" android:textSize="16sp"
                         android:background="@drawable/bg_edittext"
                         android:paddingStart="12dp" android:paddingEnd="12dp"
@@ -97,7 +97,7 @@
                         android:letterSpacing="0.1" android:paddingBottom="4dp"/>
                     <EditText android:id="@+id/etBodyFat"
                         android:layout_width="match_parent" android:layout_height="46dp"
-                        android:hint="0.0" android:hintTextColor="#5C5C66"
+                        android:hint="0.0" android:textColorHint="#5C5C66"
                         android:textColor="#F4F4F6" android:textSize="16sp"
                         android:background="@drawable/bg_edittext"
                         android:paddingStart="12dp" android:paddingEnd="12dp"
@@ -124,7 +124,7 @@
                         android:letterSpacing="0.1" android:paddingBottom="4dp"/>
                     <EditText android:id="@+id/etSleepHours"
                         android:layout_width="match_parent" android:layout_height="46dp"
-                        android:hint="0.0" android:hintTextColor="#5C5C66"
+                        android:hint="0.0" android:textColorHint="#5C5C66"
                         android:textColor="#F4F4F6" android:textSize="16sp"
                         android:background="@drawable/bg_edittext"
                         android:paddingStart="12dp" android:paddingEnd="12dp"
@@ -138,7 +138,7 @@
                         android:letterSpacing="0.1" android:paddingBottom="4dp"/>
                     <EditText android:id="@+id/etSleepScore"
                         android:layout_width="match_parent" android:layout_height="46dp"
-                        android:hint="7" android:hintTextColor="#5C5C66"
+                        android:hint="7" android:textColorHint="#5C5C66"
                         android:textColor="#F4F4F6" android:textSize="16sp"
                         android:background="@drawable/bg_edittext"
                         android:paddingStart="12dp" android:paddingEnd="12dp"
@@ -165,7 +165,7 @@
                         android:letterSpacing="0.1" android:paddingBottom="4dp"/>
                     <EditText android:id="@+id/etSteps"
                         android:layout_width="match_parent" android:layout_height="46dp"
-                        android:hint="0" android:hintTextColor="#5C5C66"
+                        android:hint="0" android:textColorHint="#5C5C66"
                         android:textColor="#F4F4F6" android:textSize="16sp"
                         android:background="@drawable/bg_edittext"
                         android:paddingStart="12dp" android:paddingEnd="12dp"
@@ -179,7 +179,7 @@
                         android:letterSpacing="0.1" android:paddingBottom="4dp"/>
                     <EditText android:id="@+id/etExerciseMin"
                         android:layout_width="match_parent" android:layout_height="46dp"
-                        android:hint="0" android:hintTextColor="#5C5C66"
+                        android:hint="0" android:textColorHint="#5C5C66"
                         android:textColor="#F4F4F6" android:textSize="16sp"
                         android:background="@drawable/bg_edittext"
                         android:paddingStart="12dp" android:paddingEnd="12dp"
@@ -198,7 +198,7 @@
                         android:letterSpacing="0.1" android:paddingBottom="4dp"/>
                     <EditText android:id="@+id/etCaloriesBurned"
                         android:layout_width="match_parent" android:layout_height="46dp"
-                        android:hint="0" android:hintTextColor="#5C5C66"
+                        android:hint="0" android:textColorHint="#5C5C66"
                         android:textColor="#F4F4F6" android:textSize="16sp"
                         android:background="@drawable/bg_edittext"
                         android:paddingStart="12dp" android:paddingEnd="12dp"
@@ -212,7 +212,7 @@
                         android:letterSpacing="0.1" android:paddingBottom="4dp"/>
                     <EditText android:id="@+id/etExerciseType"
                         android:layout_width="match_parent" android:layout_height="46dp"
-                        android:hint="e.g. Run" android:hintTextColor="#5C5C66"
+                        android:hint="e.g. Run" android:textColorHint="#5C5C66"
                         android:textColor="#F4F4F6" android:textSize="14sp"
                         android:background="@drawable/bg_edittext"
                         android:paddingStart="12dp" android:paddingEnd="12dp"/>
@@ -238,7 +238,7 @@
                         android:letterSpacing="0.1" android:paddingBottom="4dp"/>
                     <EditText android:id="@+id/etHeartRate"
                         android:layout_width="match_parent" android:layout_height="46dp"
-                        android:hint="0" android:hintTextColor="#5C5C66"
+                        android:hint="0" android:textColorHint="#5C5C66"
                         android:textColor="#F4F4F6" android:textSize="16sp"
                         android:background="@drawable/bg_edittext"
                         android:paddingStart="12dp" android:paddingEnd="12dp"
@@ -252,7 +252,7 @@
                         android:letterSpacing="0.1" android:paddingBottom="4dp"/>
                     <EditText android:id="@+id/etWater"
                         android:layout_width="match_parent" android:layout_height="46dp"
-                        android:hint="0" android:hintTextColor="#5C5C66"
+                        android:hint="0" android:textColorHint="#5C5C66"
                         android:textColor="#F4F4F6" android:textSize="16sp"
                         android:background="@drawable/bg_edittext"
                         android:paddingStart="12dp" android:paddingEnd="12dp"
@@ -271,7 +271,7 @@
                         android:letterSpacing="0.1" android:paddingBottom="4dp"/>
                     <EditText android:id="@+id/etStress"
                         android:layout_width="match_parent" android:layout_height="46dp"
-                        android:hint="0" android:hintTextColor="#5C5C66"
+                        android:hint="0" android:textColorHint="#5C5C66"
                         android:textColor="#F4F4F6" android:textSize="16sp"
                         android:background="@drawable/bg_edittext"
                         android:paddingStart="12dp" android:paddingEnd="12dp"
@@ -285,7 +285,7 @@
                         android:letterSpacing="0.1" android:paddingBottom="4dp"/>
                     <EditText android:id="@+id/etNotes"
                         android:layout_width="match_parent" android:layout_height="46dp"
-                        android:hint="Optional notes" android:hintTextColor="#5C5C66"
+                        android:hint="Optional notes" android:textColorHint="#5C5C66"
                         android:textColor="#F4F4F6" android:textSize="13sp"
                         android:background="@drawable/bg_edittext"
                         android:paddingStart="12dp" android:paddingEnd="12dp"/>
