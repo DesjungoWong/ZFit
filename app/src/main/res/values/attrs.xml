@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CalorieRingView">
+        <attr name="ringProgress" format="integer"/>
+        <attr name="ringMax" format="integer"/>
+        <attr name="ringColor" format="color"/>
+        <attr name="trackColor" format="color"/>
+        <attr name="ringStrokeWidth" format="dimension"/>
+    </declare-styleable>
+</resources>

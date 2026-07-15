@@ -1,151 +1,313 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#101013">
-    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#0A0A0B">
 
-        <!-- Header -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:orientation="horizontal" android:background="#0A0A0B"
-            android:padding="16dp" android:gravity="center_vertical">
-            <Button android:id="@+id/btnBack" android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:text="‹" android:textSize="20sp"
-                android:background="@android:color/transparent" android:textColor="#9A9AA3"
-                android:minWidth="0dp" android:minHeight="0dp" android:padding="8dp"
-                android:layout_marginEnd="8dp"/>
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:text="Health Data" android:textSize="18sp"
-                android:textColor="#F4F4F6" android:textStyle="bold"/>
-        </LinearLayout>
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="10dp"
+        android:gravity="center_vertical">
 
-        <!-- Sleep Section -->
-        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:text="SLEEP" android:textSize="10sp" android:textColor="#5C7AFF"
-            android:letterSpacing="0.14" android:padding="16dp" android:paddingBottom="8dp"
-            android:background="#141419" android:layout_marginTop="16dp"/>
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:text="‹"
+            android:textSize="20sp"
+            android:background="@android:color/transparent"
+            android:textColor="#9A9AA3"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:padding="0dp"/>
 
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:orientation="horizontal" android:background="#141419"
-            android:paddingStart="16dp" android:paddingEnd="16dp" android:paddingBottom="16dp">
-            <EditText android:id="@+id/etSleepScore"
-                android:layout_width="0dp" android:layout_height="44dp" android:layout_weight="1"
-                android:hint="Sleep Score (0-100)" android:textColor="#F4F4F6"
-                android:textColorHint="#5C5C66" android:background="#0A0A0B"
-                android:paddingStart="10dp" android:inputType="number" android:layout_marginEnd="4dp"/>
-            <EditText android:id="@+id/etSleepHours"
-                android:layout_width="0dp" android:layout_height="44dp" android:layout_weight="1"
-                android:hint="Hours slept" android:textColor="#F4F4F6"
-                android:textColorHint="#5C5C66" android:background="#0A0A0B"
-                android:paddingStart="10dp" android:inputType="numberDecimal"
-                android:layout_marginStart="4dp"/>
-        </LinearLayout>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="LOG HEALTH DATA"
+            android:textSize="14sp"
+            android:textColor="#F4F4F6"
+            android:textStyle="bold"
+            android:letterSpacing="0.06"
+            android:paddingStart="8dp"/>
 
-        <!-- Activity Section -->
-        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:text="ACTIVITY" android:textSize="10sp" android:textColor="#4FD1A0"
-            android:letterSpacing="0.14" android:padding="16dp" android:paddingBottom="8dp"
-            android:background="#141419" android:layout_marginTop="1dp"/>
-
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:orientation="vertical" android:background="#141419"
-            android:paddingStart="16dp" android:paddingEnd="16dp" android:paddingBottom="16dp">
-            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:orientation="horizontal" android:layout_marginBottom="8dp">
-                <EditText android:id="@+id/etSteps"
-                    android:layout_width="0dp" android:layout_height="44dp" android:layout_weight="1"
-                    android:hint="Steps" android:textColor="#F4F4F6" android:textColorHint="#5C5C66"
-                    android:background="#0A0A0B" android:paddingStart="10dp"
-                    android:inputType="number" android:layout_marginEnd="4dp"/>
-                <EditText android:id="@+id/etCaloriesBurned"
-                    android:layout_width="0dp" android:layout_height="44dp" android:layout_weight="1"
-                    android:hint="Calories burned" android:textColor="#F4F4F6"
-                    android:textColorHint="#5C5C66" android:background="#0A0A0B"
-                    android:paddingStart="10dp" android:inputType="number"
-                    android:layout_marginStart="4dp"/>
-            </LinearLayout>
-            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <EditText android:id="@+id/etExerciseMin"
-                    android:layout_width="0dp" android:layout_height="44dp" android:layout_weight="1"
-                    android:hint="Exercise minutes" android:textColor="#F4F4F6"
-                    android:textColorHint="#5C5C66" android:background="#0A0A0B"
-                    android:paddingStart="10dp" android:inputType="number" android:layout_marginEnd="4dp"/>
-                <EditText android:id="@+id/etExerciseType"
-                    android:layout_width="0dp" android:layout_height="44dp" android:layout_weight="1"
-                    android:hint="Exercise type" android:textColor="#F4F4F6"
-                    android:textColorHint="#5C5C66" android:background="#0A0A0B"
-                    android:paddingStart="10dp" android:layout_marginStart="4dp"/>
-            </LinearLayout>
-        </LinearLayout>
-
-        <!-- Body Metrics -->
-        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:text="BODY METRICS" android:textSize="10sp" android:textColor="#A100FF"
-            android:letterSpacing="0.14" android:padding="16dp" android:paddingBottom="8dp"
-            android:background="#141419" android:layout_marginTop="1dp"/>
-
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:orientation="horizontal" android:background="#141419"
-            android:paddingStart="16dp" android:paddingEnd="16dp" android:paddingBottom="16dp">
-            <EditText android:id="@+id/etHeartRate"
-                android:layout_width="0dp" android:layout_height="44dp" android:layout_weight="1"
-                android:hint="Heart rate bpm" android:textColor="#F4F4F6"
-                android:textColorHint="#5C5C66" android:background="#0A0A0B"
-                android:paddingStart="10dp" android:inputType="number" android:layout_marginEnd="4dp"/>
-            <EditText android:id="@+id/etWeight"
-                android:layout_width="0dp" android:layout_height="44dp" android:layout_weight="1"
-                android:hint="Weight kg" android:textColor="#F4F4F6"
-                android:textColorHint="#5C5C66" android:background="#0A0A0B"
-                android:paddingStart="10dp" android:inputType="numberDecimal"
-                android:layout_marginStart="4dp" android:layout_marginEnd="4dp"/>
-            <EditText android:id="@+id/etBodyFat"
-                android:layout_width="0dp" android:layout_height="44dp" android:layout_weight="1"
-                android:hint="Body fat %" android:textColor="#F4F4F6"
-                android:textColorHint="#5C5C66" android:background="#0A0A0B"
-                android:paddingStart="10dp" android:inputType="numberDecimal"
-                android:layout_marginStart="4dp"/>
-        </LinearLayout>
-
-        <!-- Hydration -->
-        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:text="HYDRATION" android:textSize="10sp" android:textColor="#5C7AFF"
-            android:letterSpacing="0.14" android:padding="16dp" android:paddingBottom="8dp"
-            android:background="#141419" android:layout_marginTop="1dp"/>
-
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:orientation="horizontal" android:background="#141419"
-            android:paddingStart="16dp" android:paddingEnd="16dp" android:paddingBottom="16dp">
-            <EditText android:id="@+id/etWater"
-                android:layout_width="0dp" android:layout_height="44dp" android:layout_weight="1"
-                android:hint="Water ml" android:textColor="#F4F4F6"
-                android:textColorHint="#5C5C66" android:background="#0A0A0B"
-                android:paddingStart="10dp" android:inputType="number" android:layout_marginEnd="4dp"/>
-            <EditText android:id="@+id/etStress"
-                android:layout_width="0dp" android:layout_height="44dp" android:layout_weight="1"
-                android:hint="Stress (1-10)" android:textColor="#F4F4F6"
-                android:textColorHint="#5C5C66" android:background="#0A0A0B"
-                android:paddingStart="10dp" android:inputType="number" android:layout_marginStart="4dp"/>
-        </LinearLayout>
-
-        <!-- Notes -->
-        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:text="NOTES" android:textSize="10sp" android:textColor="#5C5C66"
-            android:letterSpacing="0.14" android:padding="16dp" android:paddingBottom="8dp"
-            android:background="#141419" android:layout_marginTop="1dp"/>
-        <EditText android:id="@+id/etNotes"
-            android:layout_width="match_parent" android:layout_height="80dp"
-            android:hint="Notes..." android:textColor="#F4F4F6" android:textColorHint="#5C5C66"
-            android:background="#141419" android:paddingStart="16dp" android:paddingEnd="16dp"
-            android:gravity="top" android:inputType="textMultiLine"/>
-
-        <!-- Save -->
-        <Button android:id="@+id/btnSave"
-            android:layout_width="match_parent" android:layout_height="52dp"
-            android:layout_margin="16dp"
-            android:text="Save Health Data" android:textSize="15sp" android:textColor="#FFFFFF"
-            android:background="#A100FF"/>
-
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="SAVE"
+            android:textSize="12sp"
+            android:textColor="#A100FF"
+            android:background="@drawable/bg_chip_active"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:minWidth="0dp"
+            android:minHeight="0dp"/>
     </LinearLayout>
-</ScrollView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="16dp">
+
+            <!-- Body section -->
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="BODY" android:textSize="9sp" android:textColor="#5C5C66"
+                android:letterSpacing="0.14" android:paddingBottom="8dp" android:paddingTop="4dp"/>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:layout_marginBottom="6dp">
+
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:orientation="vertical"
+                    android:layout_marginEnd="6dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="WEIGHT (kg)" android:textSize="8sp" android:textColor="#5C5C66"
+                        android:letterSpacing="0.1" android:paddingBottom="4dp"/>
+                    <EditText android:id="@+id/etWeight"
+                        android:layout_width="match_parent" android:layout_height="46dp"
+                        android:hint="0.0" android:hintTextColor="#5C5C66"
+                        android:textColor="#F4F4F6" android:textSize="16sp"
+                        android:background="@drawable/bg_edittext"
+                        android:paddingStart="12dp" android:paddingEnd="12dp"
+                        android:inputType="numberDecimal"/>
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:orientation="vertical">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="BODY FAT (%)" android:textSize="8sp" android:textColor="#5C5C66"
+                        android:letterSpacing="0.1" android:paddingBottom="4dp"/>
+                    <EditText android:id="@+id/etBodyFat"
+                        android:layout_width="match_parent" android:layout_height="46dp"
+                        android:hint="0.0" android:hintTextColor="#5C5C66"
+                        android:textColor="#F4F4F6" android:textSize="16sp"
+                        android:background="@drawable/bg_edittext"
+                        android:paddingStart="12dp" android:paddingEnd="12dp"
+                        android:inputType="numberDecimal"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Sleep section -->
+            <View android:layout_width="match_parent" android:layout_height="1dp"
+                android:background="#17FFFFFF" android:layout_marginBottom="8dp"/>
+
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="SLEEP" android:textSize="9sp" android:textColor="#5C5C66"
+                android:letterSpacing="0.14" android:paddingBottom="8dp"/>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:layout_marginBottom="6dp">
+
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:orientation="vertical"
+                    android:layout_marginEnd="6dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="HOURS" android:textSize="8sp" android:textColor="#5C5C66"
+                        android:letterSpacing="0.1" android:paddingBottom="4dp"/>
+                    <EditText android:id="@+id/etSleepHours"
+                        android:layout_width="match_parent" android:layout_height="46dp"
+                        android:hint="0.0" android:hintTextColor="#5C5C66"
+                        android:textColor="#F4F4F6" android:textSize="16sp"
+                        android:background="@drawable/bg_edittext"
+                        android:paddingStart="12dp" android:paddingEnd="12dp"
+                        android:inputType="numberDecimal"/>
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:orientation="vertical">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="SLEEP QUALITY (1-10)" android:textSize="8sp" android:textColor="#5C5C66"
+                        android:letterSpacing="0.1" android:paddingBottom="4dp"/>
+                    <EditText android:id="@+id/etSleepScore"
+                        android:layout_width="match_parent" android:layout_height="46dp"
+                        android:hint="7" android:hintTextColor="#5C5C66"
+                        android:textColor="#F4F4F6" android:textSize="16sp"
+                        android:background="@drawable/bg_edittext"
+                        android:paddingStart="12dp" android:paddingEnd="12dp"
+                        android:inputType="number"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Activity section -->
+            <View android:layout_width="match_parent" android:layout_height="1dp"
+                android:background="#17FFFFFF" android:layout_marginBottom="8dp"/>
+
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="ACTIVITY" android:textSize="9sp" android:textColor="#5C5C66"
+                android:letterSpacing="0.14" android:paddingBottom="8dp"/>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:layout_marginBottom="6dp">
+
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:orientation="vertical"
+                    android:layout_marginEnd="6dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="STEPS" android:textSize="8sp" android:textColor="#5C5C66"
+                        android:letterSpacing="0.1" android:paddingBottom="4dp"/>
+                    <EditText android:id="@+id/etSteps"
+                        android:layout_width="match_parent" android:layout_height="46dp"
+                        android:hint="0" android:hintTextColor="#5C5C66"
+                        android:textColor="#F4F4F6" android:textSize="16sp"
+                        android:background="@drawable/bg_edittext"
+                        android:paddingStart="12dp" android:paddingEnd="12dp"
+                        android:inputType="number"/>
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:orientation="vertical">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="EXERCISE (min)" android:textSize="8sp" android:textColor="#5C5C66"
+                        android:letterSpacing="0.1" android:paddingBottom="4dp"/>
+                    <EditText android:id="@+id/etExerciseMin"
+                        android:layout_width="match_parent" android:layout_height="46dp"
+                        android:hint="0" android:hintTextColor="#5C5C66"
+                        android:textColor="#F4F4F6" android:textSize="16sp"
+                        android:background="@drawable/bg_edittext"
+                        android:paddingStart="12dp" android:paddingEnd="12dp"
+                        android:inputType="number"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:layout_marginBottom="6dp">
+
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:orientation="vertical"
+                    android:layout_marginEnd="6dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="CALORIES BURNED" android:textSize="8sp" android:textColor="#5C5C66"
+                        android:letterSpacing="0.1" android:paddingBottom="4dp"/>
+                    <EditText android:id="@+id/etCaloriesBurned"
+                        android:layout_width="match_parent" android:layout_height="46dp"
+                        android:hint="0" android:hintTextColor="#5C5C66"
+                        android:textColor="#F4F4F6" android:textSize="16sp"
+                        android:background="@drawable/bg_edittext"
+                        android:paddingStart="12dp" android:paddingEnd="12dp"
+                        android:inputType="number"/>
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:orientation="vertical">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="EXERCISE TYPE" android:textSize="8sp" android:textColor="#5C5C66"
+                        android:letterSpacing="0.1" android:paddingBottom="4dp"/>
+                    <EditText android:id="@+id/etExerciseType"
+                        android:layout_width="match_parent" android:layout_height="46dp"
+                        android:hint="e.g. Run" android:hintTextColor="#5C5C66"
+                        android:textColor="#F4F4F6" android:textSize="14sp"
+                        android:background="@drawable/bg_edittext"
+                        android:paddingStart="12dp" android:paddingEnd="12dp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Vitals section -->
+            <View android:layout_width="match_parent" android:layout_height="1dp"
+                android:background="#17FFFFFF" android:layout_marginBottom="8dp"/>
+
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="VITALS" android:textSize="9sp" android:textColor="#5C5C66"
+                android:letterSpacing="0.14" android:paddingBottom="8dp"/>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:layout_marginBottom="6dp">
+
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:orientation="vertical"
+                    android:layout_marginEnd="6dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="HEART RATE (bpm)" android:textSize="8sp" android:textColor="#5C5C66"
+                        android:letterSpacing="0.1" android:paddingBottom="4dp"/>
+                    <EditText android:id="@+id/etHeartRate"
+                        android:layout_width="match_parent" android:layout_height="46dp"
+                        android:hint="0" android:hintTextColor="#5C5C66"
+                        android:textColor="#F4F4F6" android:textSize="16sp"
+                        android:background="@drawable/bg_edittext"
+                        android:paddingStart="12dp" android:paddingEnd="12dp"
+                        android:inputType="number"/>
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:orientation="vertical">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="WATER (ml)" android:textSize="8sp" android:textColor="#5C5C66"
+                        android:letterSpacing="0.1" android:paddingBottom="4dp"/>
+                    <EditText android:id="@+id/etWater"
+                        android:layout_width="match_parent" android:layout_height="46dp"
+                        android:hint="0" android:hintTextColor="#5C5C66"
+                        android:textColor="#F4F4F6" android:textSize="16sp"
+                        android:background="@drawable/bg_edittext"
+                        android:paddingStart="12dp" android:paddingEnd="12dp"
+                        android:inputType="number"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:layout_marginBottom="6dp">
+
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:orientation="vertical"
+                    android:layout_marginEnd="6dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="STRESS (1-10)" android:textSize="8sp" android:textColor="#5C5C66"
+                        android:letterSpacing="0.1" android:paddingBottom="4dp"/>
+                    <EditText android:id="@+id/etStress"
+                        android:layout_width="match_parent" android:layout_height="46dp"
+                        android:hint="0" android:hintTextColor="#5C5C66"
+                        android:textColor="#F4F4F6" android:textSize="16sp"
+                        android:background="@drawable/bg_edittext"
+                        android:paddingStart="12dp" android:paddingEnd="12dp"
+                        android:inputType="number"/>
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:orientation="vertical">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="NOTES" android:textSize="8sp" android:textColor="#5C5C66"
+                        android:letterSpacing="0.1" android:paddingBottom="4dp"/>
+                    <EditText android:id="@+id/etNotes"
+                        android:layout_width="match_parent" android:layout_height="46dp"
+                        android:hint="Optional notes" android:hintTextColor="#5C5C66"
+                        android:textColor="#F4F4F6" android:textSize="13sp"
+                        android:background="@drawable/bg_edittext"
+                        android:paddingStart="12dp" android:paddingEnd="12dp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#17FFFFFF"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#0A0A0B"
+        app:menu="@menu/bottom_nav"
+        app:itemTextColor="@color/bottom_nav_item_colors"
+        app:itemIconTint="@color/bottom_nav_item_colors"
+        app:labelVisibilityMode="labeled"/>
+
+</LinearLayout>

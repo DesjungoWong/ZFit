@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0A0A0B"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Top bar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#0A0A0B"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="10dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="ZFit"
+                android:textSize="20sp"
+                android:textColor="#F4F4F6"
+                android:textStyle="bold"
+                android:letterSpacing="0.06"/>
+
+            <Button
+                android:id="@+id/btnSettings"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:text="⚙"
+                android:textSize="16sp"
+                android:background="@android:color/transparent"
+                android:textColor="#5C5C66"
+                android:padding="0dp"
+                android:minWidth="0dp"
+                android:minHeight="0dp"/>
+        </LinearLayout>
+
+        <!-- Date nav -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="6dp">
+
+            <Button
+                android:id="@+id/btnPrevDay"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="‹"
+                android:textSize="22sp"
+                android:background="@android:color/transparent"
+                android:textColor="#9A9AA3"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:padding="0dp"/>
+
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Today"
+                android:textSize="13sp"
+                android:textColor="#9A9AA3"
+                android:letterSpacing="0.04"/>
+
+            <Button
+                android:id="@+id/btnNextDay"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="›"
+                android:textSize="22sp"
+                android:background="@android:color/transparent"
+                android:textColor="#9A9AA3"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:padding="0dp"/>
+        </LinearLayout>
+
+        <!-- Hero ring section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#141419"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="4dp"
+            android:paddingTop="24dp"
+            android:paddingBottom="20dp"
+            android:gravity="center_horizontal">
+
+            <!-- Calorie ring -->
+            <com.zfit.app.CalorieRingView
+                android:id="@+id/calorieRingView"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                app:ringColor="#A100FF"
+                app:trackColor="#12FFFFFF"
+                app:ringStrokeWidth="18dp"
+                app:ringMax="2000"
+                app:ringProgress="0"/>
+
+            <!-- Row: Remaining | Burned | Net -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="16dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="REMAINING"
+                        android:textSize="8sp"
+                        android:textColor="#5C5C66"
+                        android:letterSpacing="0.1"/>
+                    <TextView
+                        android:id="@+id/tvRemaining"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2000"
+                        android:textSize="18sp"
+                        android:textColor="#F4F4F6"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="32dp"
+                    android:background="#17FFFFFF"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="BURNED"
+                        android:textSize="8sp"
+                        android:textColor="#5C5C66"
+                        android:letterSpacing="0.1"/>
+                    <TextView
+                        android:id="@+id/tvBurned"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textSize="18sp"
+                        android:textColor="#4FD1A0"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="32dp"
+                    android:background="#17FFFFFF"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="NET"
+                        android:textSize="8sp"
+                        android:textColor="#5C5C66"
+                        android:letterSpacing="0.1"/>
+                    <TextView
+                        android:id="@+id/tvNet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textSize="18sp"
+                        android:textColor="#F4F4F6"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Macros 3-column hairline grid -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="4dp">
+
+            <!-- Protein -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:background="#141419"
+                android:padding="12dp"
+                android:layout_marginEnd="1dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PROTEIN"
+                    android:textSize="8sp"
+                    android:textColor="#5C5C66"
+                    android:letterSpacing="0.12"
+                    android:layout_marginBottom="4dp"/>
+                <TextView
+                    android:id="@+id/tvProteinVal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0g"
+                    android:textSize="20sp"
+                    android:textColor="#5C7AFF"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="2dp"/>
+                <ProgressBar
+                    android:id="@+id/pbProtein"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:max="100"
+                    android:progressDrawable="@drawable/progress_blue"/>
+            </LinearLayout>
+
+            <!-- Carbs -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:background="#141419"
+                android:padding="12dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginEnd="1dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CARBS"
+                    android:textSize="8sp"
+                    android:textColor="#5C5C66"
+                    android:letterSpacing="0.12"
+                    android:layout_marginBottom="4dp"/>
+                <TextView
+                    android:id="@+id/tvCarbsVal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0g"
+                    android:textSize="20sp"
+                    android:textColor="#D9B96A"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="2dp"/>
+                <ProgressBar
+                    android:id="@+id/pbCarbs"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:max="100"
+                    android:progressDrawable="@drawable/progress_purple"/>
+            </LinearLayout>
+
+            <!-- Fat -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:background="#141419"
+                android:padding="12dp"
+                android:layout_marginStart="1dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="FAT"
+                    android:textSize="8sp"
+                    android:textColor="#5C5C66"
+                    android:letterSpacing="0.12"
+                    android:layout_marginBottom="4dp"/>
+                <TextView
+                    android:id="@+id/tvFatVal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0g"
+                    android:textSize="20sp"
+                    android:textColor="#C86BFF"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="2dp"/>
+                <ProgressBar
+                    android:id="@+id/pbFat"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:max="100"
+                    android:progressDrawable="@drawable/progress_purple"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Water quick-add row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#141419"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="12dp"
+            android:padding="12dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="WATER"
+                android:textSize="8sp"
+                android:textColor="#5C5C66"
+                android:letterSpacing="0.1"
+                android:layout_marginEnd="10dp"/>
+
+            <TextView
+                android:id="@+id/tvWaterVal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="0 ml"
+                android:textSize="14sp"
+                android:textColor="#5C7AFF"/>
+
+            <Button
+                android:id="@+id/btnWater200"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:text="+200"
+                android:textSize="11sp"
+                android:textColor="#5C7AFF"
+                android:background="@drawable/bg_chip_inactive"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:layout_marginEnd="6dp"
+                android:minWidth="0dp"
+                android:minHeight="0dp"/>
+
+            <Button
+                android:id="@+id/btnWater500"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:text="+500"
+                android:textSize="11sp"
+                android:textColor="#5C7AFF"
+                android:background="@drawable/bg_chip_inactive"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:minWidth="0dp"
+                android:minHeight="0dp"/>
+        </LinearLayout>
+
+        <!-- TODAY'S LOG header -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TODAY'S LOG"
+            android:textSize="9sp"
+            android:textColor="#5C5C66"
+            android:letterSpacing="0.18"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="8dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvFoodLog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:nestedScrollingEnabled="false"/>
+
+        <!-- Log food button -->
+        <Button
+            android:id="@+id/btnAddFoodFab"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_margin="16dp"
+            android:text="+ LOG FOOD"
+            android:textSize="13sp"
+            android:letterSpacing="0.06"
+            android:textColor="#FFFFFF"
+            android:background="#A100FF"/>
+
+    </LinearLayout>
+</ScrollView>

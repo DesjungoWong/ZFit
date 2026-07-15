@@ -1,127 +1,146 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#101013">
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:background="#0A0A0B">
+  <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+      android:orientation="horizontal" android:paddingStart="16dp" android:paddingEnd="16dp"
+      android:paddingTop="16dp" android:paddingBottom="10dp" android:gravity="center_vertical">
+    <Button android:id="@+id/btnBack" android:layout_width="36dp" android:layout_height="36dp"
+        android:text="&#8249;" android:textSize="20sp" android:background="@android:color/transparent"
+        android:textColor="#9A9AA3" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp"/>
+    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+        android:layout_weight="1" android:text="SETTINGS" android:textSize="14sp"
+        android:textColor="#F4F4F6" android:textStyle="bold" android:letterSpacing="0.06" android:paddingStart="8dp"/>
+    <Button android:id="@+id/btnSave" android:layout_width="wrap_content" android:layout_height="36dp"
+        android:text="SAVE" android:textSize="12sp" android:textColor="#A100FF"
+        android:background="@drawable/bg_chip_active" android:paddingStart="14dp" android:paddingEnd="14dp"
+        android:minWidth="0dp" android:minHeight="0dp"/>
+  </LinearLayout>
+  <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <!-- Header -->
+        android:orientation="vertical" android:paddingStart="16dp" android:paddingEnd="16dp" android:paddingBottom="16dp">
+      <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+          android:text="CLAUDE AI" android:textSize="9sp" android:textColor="#5C5C66"
+          android:letterSpacing="0.14" android:paddingBottom="8dp" android:paddingTop="4dp"/>
+      <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+          android:orientation="vertical" android:background="#141419" android:padding="14dp" android:layout_marginBottom="4dp">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="API KEY" android:textSize="8sp" android:textColor="#5C5C66" android:letterSpacing="0.1" android:paddingBottom="6dp"/>
         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:orientation="horizontal" android:background="#0A0A0B"
-            android:padding="16dp" android:gravity="center_vertical">
-            <Button android:id="@+id/btnBack" android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:text="‹" android:textSize="20sp"
-                android:background="@android:color/transparent" android:textColor="#9A9AA3"
-                android:minWidth="0dp" android:minHeight="0dp" android:padding="8dp"
-                android:layout_marginEnd="8dp"/>
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:text="Settings" android:textSize="18sp"
-                android:textColor="#F4F4F6" android:textStyle="bold"/>
+            android:orientation="horizontal">
+          <EditText android:id="@+id/etApiKey" android:layout_width="0dp" android:layout_height="46dp"
+              android:layout_weight="1" android:hint="sk-ant-..." android:hintTextColor="#5C5C66"
+              android:textColor="#F4F4F6" android:textSize="13sp"
+              android:background="@drawable/bg_edittext" android:paddingStart="12dp" android:paddingEnd="12dp"
+              android:inputType="textPassword"/>
+          <Button android:id="@+id/btnToggleApiKey" android:layout_width="46dp" android:layout_height="46dp"
+              android:text="&#128065;" android:textSize="16sp" android:background="@android:color/transparent"
+              android:textColor="#5C5C66" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp"
+              android:layout_marginStart="6dp"/>
         </LinearLayout>
-
-        <!-- AI Config Card -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:orientation="vertical" android:background="#141419"
-            android:layout_margin="16dp" android:padding="16dp">
-
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="AI CONFIGURATION" android:textSize="9sp" android:textColor="#A100FF"
-                android:letterSpacing="0.14" android:layout_marginBottom="12dp"/>
-
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="Model: claude-haiku-4-5-20251001"
-                android:textSize="11sp" android:textColor="#5C5C66" android:layout_marginBottom="8dp"/>
-
-            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <EditText android:id="@+id/etApiKey"
-                    android:layout_width="0dp" android:layout_height="44dp" android:layout_weight="1"
-                    android:hint="Claude API Key" android:textColor="#F4F4F6"
-                    android:textColorHint="#5C5C66" android:background="#0A0A0B"
-                    android:paddingStart="10dp" android:paddingEnd="10dp"
-                    android:inputType="textPassword" android:singleLine="true"/>
-                <Button android:id="@+id/btnToggleApiKey"
-                    android:layout_width="44dp" android:layout_height="44dp"
-                    android:text="👁" android:textSize="14sp"
-                    android:background="#0A0A0B" android:layout_marginStart="4dp"
-                    android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp"/>
-            </LinearLayout>
-
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:text="Get your API key from console.anthropic.com"
-                android:textSize="10sp" android:textColor="#5C5C66"
-                android:layout_marginTop="6dp"/>
+      </LinearLayout>
+      <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#17FFFFFF" android:layout_marginTop="8dp" android:layout_marginBottom="8dp"/>
+      <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+          android:text="BODY PROFILE" android:textSize="9sp" android:textColor="#5C5C66"
+          android:letterSpacing="0.14" android:paddingBottom="8dp"/>
+      <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+          android:orientation="horizontal" android:layout_marginBottom="6dp">
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:orientation="vertical" android:layout_marginEnd="6dp">
+          <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:text="HEIGHT (cm)" android:textSize="8sp" android:textColor="#5C5C66"
+              android:letterSpacing="0.1" android:paddingBottom="4dp"/>
+          <EditText android:id="@+id/etHeight" android:layout_width="match_parent" android:layout_height="46dp"
+              android:hint="170" android:hintTextColor="#5C5C66" android:textColor="#F4F4F6" android:textSize="15sp"
+              android:background="@drawable/bg_edittext" android:paddingStart="12dp" android:paddingEnd="12dp"
+              android:inputType="number"/>
         </LinearLayout>
-
-        <!-- Body Profile Card -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:orientation="vertical" android:background="#141419"
-            android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp" android:padding="16dp">
-
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="BODY PROFILE" android:textSize="9sp" android:textColor="#D9B96A"
-                android:letterSpacing="0.14" android:layout_marginBottom="12dp"/>
-
-            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:orientation="horizontal" android:layout_marginBottom="8dp">
-                <EditText android:id="@+id/etHeight"
-                    android:layout_width="0dp" android:layout_height="44dp" android:layout_weight="1"
-                    android:hint="Height (cm)" android:textColor="#F4F4F6"
-                    android:textColorHint="#5C5C66" android:background="#0A0A0B"
-                    android:paddingStart="10dp" android:inputType="number"
-                    android:layout_marginEnd="4dp"/>
-                <EditText android:id="@+id/etWeight"
-                    android:layout_width="0dp" android:layout_height="44dp" android:layout_weight="1"
-                    android:hint="Weight (kg)" android:textColor="#F4F4F6"
-                    android:textColorHint="#5C5C66" android:background="#0A0A0B"
-                    android:paddingStart="10dp" android:inputType="numberDecimal"
-                    android:layout_marginStart="4dp"/>
-            </LinearLayout>
-
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="DAILY GOALS" android:textSize="9sp" android:textColor="#5C5C66"
-                android:letterSpacing="0.12" android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"/>
-
-            <EditText android:id="@+id/etCalGoal"
-                android:layout_width="match_parent" android:layout_height="44dp"
-                android:hint="Calorie goal (kcal)" android:textColor="#F4F4F6"
-                android:textColorHint="#5C5C66" android:background="#0A0A0B"
-                android:paddingStart="10dp" android:inputType="number"
-                android:layout_marginBottom="8dp"/>
-
-            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <EditText android:id="@+id/etProteinGoal"
-                    android:layout_width="0dp" android:layout_height="44dp" android:layout_weight="1"
-                    android:hint="Protein (g)" android:textColor="#F4F4F6"
-                    android:textColorHint="#5C5C66" android:background="#0A0A0B"
-                    android:paddingStart="10dp" android:inputType="number"
-                    android:layout_marginEnd="4dp"/>
-                <EditText android:id="@+id/etCarbsGoal"
-                    android:layout_width="0dp" android:layout_height="44dp" android:layout_weight="1"
-                    android:hint="Carbs (g)" android:textColor="#F4F4F6"
-                    android:textColorHint="#5C5C66" android:background="#0A0A0B"
-                    android:paddingStart="10dp" android:inputType="number"
-                    android:layout_marginStart="4dp" android:layout_marginEnd="4dp"/>
-                <EditText android:id="@+id/etFatGoal"
-                    android:layout_width="0dp" android:layout_height="44dp" android:layout_weight="1"
-                    android:hint="Fat (g)" android:textColor="#F4F4F6"
-                    android:textColorHint="#5C5C66" android:background="#0A0A0B"
-                    android:paddingStart="10dp" android:inputType="number"
-                    android:layout_marginStart="4dp"/>
-            </LinearLayout>
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:orientation="vertical">
+          <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:text="WEIGHT (kg)" android:textSize="8sp" android:textColor="#5C5C66"
+              android:letterSpacing="0.1" android:paddingBottom="4dp"/>
+          <EditText android:id="@+id/etWeight" android:layout_width="match_parent" android:layout_height="46dp"
+              android:hint="70" android:hintTextColor="#5C5C66" android:textColor="#F4F4F6" android:textSize="15sp"
+              android:background="@drawable/bg_edittext" android:paddingStart="12dp" android:paddingEnd="12dp"
+              android:inputType="numberDecimal"/>
         </LinearLayout>
-
-        <!-- Save -->
-        <Button android:id="@+id/btnSave"
-            android:layout_width="match_parent" android:layout_height="52dp"
-            android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:text="Save Settings" android:textSize="15sp" android:textColor="#FFFFFF"
-            android:background="#A100FF"/>
-
+      </LinearLayout>
+      <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#17FFFFFF" android:layout_marginTop="4dp" android:layout_marginBottom="8dp"/>
+      <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+          android:text="DAILY GOALS" android:textSize="9sp" android:textColor="#5C5C66"
+          android:letterSpacing="0.14" android:paddingBottom="8dp"/>
+      <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+          android:orientation="horizontal" android:layout_marginBottom="6dp">
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:orientation="vertical" android:layout_marginEnd="6dp">
+          <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:text="CALORIE GOAL" android:textSize="8sp" android:textColor="#5C5C66"
+              android:letterSpacing="0.1" android:paddingBottom="4dp"/>
+          <EditText android:id="@+id/etCalGoal" android:layout_width="match_parent" android:layout_height="46dp"
+              android:hint="2000" android:hintTextColor="#5C5C66" android:textColor="#F4F4F6" android:textSize="15sp"
+              android:background="@drawable/bg_edittext" android:paddingStart="12dp" android:paddingEnd="12dp"
+              android:inputType="number"/>
+        </LinearLayout>
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:orientation="vertical">
+          <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:text="PROTEIN GOAL (g)" android:textSize="8sp" android:textColor="#5C5C66"
+              android:letterSpacing="0.1" android:paddingBottom="4dp"/>
+          <EditText android:id="@+id/etProteinGoal" android:layout_width="match_parent" android:layout_height="46dp"
+              android:hint="150" android:hintTextColor="#5C5C66" android:textColor="#F4F4F6" android:textSize="15sp"
+              android:background="@drawable/bg_edittext" android:paddingStart="12dp" android:paddingEnd="12dp"
+              android:inputType="number"/>
+        </LinearLayout>
+      </LinearLayout>
+      <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+          android:orientation="horizontal" android:layout_marginBottom="6dp">
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:orientation="vertical" android:layout_marginEnd="6dp">
+          <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:text="CARBS GOAL (g)" android:textSize="8sp" android:textColor="#5C5C66"
+              android:letterSpacing="0.1" android:paddingBottom="4dp"/>
+          <EditText android:id="@+id/etCarbsGoal" android:layout_width="match_parent" android:layout_height="46dp"
+              android:hint="200" android:hintTextColor="#5C5C66" android:textColor="#F4F4F6" android:textSize="15sp"
+              android:background="@drawable/bg_edittext" android:paddingStart="12dp" android:paddingEnd="12dp"
+              android:inputType="number"/>
+        </LinearLayout>
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:orientation="vertical">
+          <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:text="FAT GOAL (g)" android:textSize="8sp" android:textColor="#5C5C66"
+              android:letterSpacing="0.1" android:paddingBottom="4dp"/>
+          <EditText android:id="@+id/etFatGoal" android:layout_width="match_parent" android:layout_height="46dp"
+              android:hint="65" android:hintTextColor="#5C5C66" android:textColor="#F4F4F6" android:textSize="15sp"
+              android:background="@drawable/bg_edittext" android:paddingStart="12dp" android:paddingEnd="12dp"
+              android:inputType="number"/>
+        </LinearLayout>
+      </LinearLayout>
+      <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#17FFFFFF" android:layout_marginTop="4dp" android:layout_marginBottom="8dp"/>
+      <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+          android:text="INTEGRATIONS" android:textSize="9sp" android:textColor="#5C5C66"
+          android:letterSpacing="0.14" android:paddingBottom="8dp"/>
+      <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+          android:orientation="horizontal" android:background="#141419" android:padding="14dp" android:layout_marginBottom="4dp">
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+            android:text="Health Connect" android:textSize="14sp" android:textColor="#F4F4F6"/>
+        <Switch android:id="@+id/switchHealthConnect" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:checked="false" android:thumbTint="#A100FF" android:trackTint="#5C5C66"/>
+      </LinearLayout>
+      <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+          android:orientation="horizontal" android:background="#141419" android:padding="14dp">
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+            android:text="SG Food Database" android:textSize="14sp" android:textColor="#F4F4F6"/>
+        <Switch android:id="@+id/switchSGDB" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:checked="true" android:thumbTint="#A100FF" android:trackTint="#5C5C66"/>
+      </LinearLayout>
     </LinearLayout>
-</ScrollView>
+  </ScrollView>
+  <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#17FFFFFF"/>
+  <com.google.android.material.bottomnavigation.BottomNavigationView
+      android:id="@+id/bottomNav" android:layout_width="match_parent" android:layout_height="56dp"
+      android:background="#0A0A0B" app:menu="@menu/bottom_nav"
+      app:itemTextColor="@color/bottom_nav_item_colors" app:itemIconTint="@color/bottom_nav_item_colors"
+      app:labelVisibilityMode="labeled"/>
+</LinearLayout>

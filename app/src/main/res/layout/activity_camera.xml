@@ -1,94 +1,408 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#101013">
+    android:background="#0A0A0B">
 
     <!-- Header -->
-    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:orientation="horizontal" android:background="#0A0A0B"
-        android:padding="16dp" android:gravity="center_vertical">
-        <Button android:id="@+id/btnBack" android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:text="‹" android:textSize="20sp"
-            android:background="@android:color/transparent" android:textColor="#9A9AA3"
-            android:minWidth="0dp" android:minHeight="0dp" android:padding="8dp"
-            android:layout_marginEnd="8dp"/>
-        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
-            android:layout_weight="1" android:orientation="vertical">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="Snap &amp; Log" android:textSize="18sp"
-                android:textColor="#F4F4F6" android:textStyle="bold"/>
-            <TextView android:id="@+id/tvAIStatus" android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:text="AI will identify food from photo"
-                android:textSize="11sp" android:textColor="#5C5C66"/>
-        </LinearLayout>
-        <Button android:id="@+id/btnAIToggle"
-            android:layout_width="wrap_content" android:layout_height="32dp"
-            android:text="AI: ON" android:textSize="11sp" android:textColor="#A100FF"
-            android:background="#1F0A33" android:paddingStart="10dp" android:paddingEnd="10dp"
-            android:minWidth="0dp" android:minHeight="0dp"/>
-    </LinearLayout>
-
-    <!-- Preview -->
-    <ImageView android:id="@+id/ivPreview"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="#0A0A0B"
-        android:scaleType="centerCrop"
-        android:src="@android:drawable/ic_menu_camera"/>
-
-    <!-- Buttons -->
-    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:orientation="horizontal" android:padding="16dp" android:layout_marginTop="1dp">
-        <Button android:id="@+id/btnCamera"
-            android:layout_width="0dp" android:layout_height="52dp" android:layout_weight="1"
-            android:text="📷 Camera" android:textSize="14sp" android:textColor="#FFFFFF"
-            android:background="#A100FF" android:layout_marginEnd="4dp"
-            android:minWidth="0dp" android:minHeight="0dp"/>
-        <Button android:id="@+id/btnGallery"
-            android:layout_width="0dp" android:layout_height="52dp" android:layout_weight="1"
-            android:text="🖼 Gallery" android:textSize="14sp" android:textColor="#9A9AA3"
-            android:background="#141419" android:layout_marginStart="4dp"
-            android:minWidth="0dp" android:minHeight="0dp"/>
-    </LinearLayout>
-
-    <!-- Result card -->
-    <LinearLayout android:id="@+id/llResult"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="#141419"
-        android:padding="16dp"
-        android:visibility="gone">
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="8dp"
+        android:gravity="center_vertical">
 
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:text="IDENTIFIED FOOD" android:textSize="9sp" android:textColor="#5C5C66"
-            android:letterSpacing="0.12" android:layout_marginBottom="6dp"/>
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:text="‹"
+            android:textSize="20sp"
+            android:background="@android:color/transparent"
+            android:textColor="#9A9AA3"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:padding="0dp"/>
 
-        <TextView android:id="@+id/tvFoodName"
-            android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:text="—" android:textSize="18sp" android:textColor="#F4F4F6"
-            android:layout_marginBottom="4dp"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="SNAP &amp; LOG"
+            android:textSize="14sp"
+            android:textColor="#F4F4F6"
+            android:textStyle="bold"
+            android:letterSpacing="0.06"
+            android:paddingStart="8dp"/>
+    </LinearLayout>
 
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:orientation="horizontal" android:gravity="center_vertical">
-            <TextView android:id="@+id/tvCalResult"
-                android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
-                android:text="—" android:textSize="22sp" android:textColor="#C86BFF"
-                android:textStyle="bold"/>
-            <TextView android:id="@+id/tvMacroResult"
-                android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="—" android:textSize="12sp" android:textColor="#5C5C66"/>
+    <!-- Tab bar: Camera / Gallery / Describe -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/snapTabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="#101013"
+        app:tabTextColor="#5C5C66"
+        app:tabSelectedTextColor="#A100FF"
+        app:tabIndicatorColor="#A100FF"
+        app:tabIndicatorHeight="2dp"
+        app:tabMode="fixed">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CAMERA"/>
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GALLERY"/>
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DESCRIBE"/>
+    </com.google.android.material.tabs.TabLayout>
+
+    <!-- Tab content container -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <!-- CAMERA TAB -->
+        <LinearLayout
+            android:id="@+id/panelCamera"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:visibility="visible">
+
+            <!-- Preview area -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="#101013">
+
+                <ImageView
+                    android:id="@+id/ivCameraPreview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@android:color/transparent"/>
+
+                <!-- Crosshair overlay -->
+                <View
+                    android:layout_width="64dp"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:background="#40FFFFFF"/>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="64dp"
+                    android:layout_gravity="center"
+                    android:background="#40FFFFFF"/>
+
+                <TextView
+                    android:id="@+id/tvCameraHint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginBottom="16dp"
+                    android:text="Tap capture to photograph food"
+                    android:textSize="12sp"
+                    android:textColor="#9A9AA3"/>
+            </FrameLayout>
+
+            <!-- Macro result card -->
+            <LinearLayout
+                android:id="@+id/llCameraResult"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#141419"
+                android:padding="14dp"
+                android:visibility="gone">
+
+                <TextView android:id="@+id/tvCameraFoodName"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="—" android:textSize="16sp" android:textColor="#F4F4F6"
+                    android:textStyle="bold" android:layout_marginBottom="4dp"/>
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView android:id="@+id/tvCameraKcal"
+                        android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="0 kcal"
+                        android:textSize="14sp" android:textColor="#C86BFF"/>
+                    <TextView android:id="@+id/tvCameraMacros"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="P 0g  C 0g  F 0g"
+                        android:textSize="12sp" android:textColor="#5C5C66"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnCameraCapture"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_margin="16dp"
+                android:text="CAPTURE"
+                android:textSize="13sp"
+                android:textColor="#FFFFFF"
+                android:letterSpacing="0.06"
+                android:background="#A100FF"
+                android:minWidth="0dp"
+                android:minHeight="0dp"/>
         </LinearLayout>
 
-        <Button android:id="@+id/btnAddToLog"
-            android:layout_width="match_parent" android:layout_height="48dp"
-            android:layout_marginTop="12dp"
-            android:text="Add to Log" android:textSize="14sp" android:textColor="#FFFFFF"
-            android:background="#A100FF" android:visibility="gone"
-            android:minWidth="0dp" android:minHeight="0dp"/>
-    </LinearLayout>
+        <!-- GALLERY TAB -->
+        <LinearLayout
+            android:id="@+id/panelGallery"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="#101013">
+
+                <ImageView
+                    android:id="@+id/ivGalleryPreview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@android:color/transparent"/>
+
+                <TextView
+                    android:id="@+id/tvGalleryHint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Pick an image from your gallery"
+                    android:textSize="13sp"
+                    android:textColor="#5C5C66"/>
+            </FrameLayout>
+
+            <LinearLayout
+                android:id="@+id/llGalleryResult"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#141419"
+                android:padding="14dp"
+                android:visibility="gone">
+
+                <TextView android:id="@+id/tvGalleryFoodName"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="—" android:textSize="16sp" android:textColor="#F4F4F6"
+                    android:textStyle="bold" android:layout_marginBottom="4dp"/>
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView android:id="@+id/tvGalleryKcal"
+                        android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="0 kcal"
+                        android:textSize="14sp" android:textColor="#C86BFF"/>
+                    <TextView android:id="@+id/tvGalleryMacros"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="P 0g  C 0g  F 0g"
+                        android:textSize="12sp" android:textColor="#5C5C66"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <Button
+                    android:id="@+id/btnGalleryPick"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_weight="1"
+                    android:text="PICK IMAGE"
+                    android:textSize="12sp"
+                    android:textColor="#A100FF"
+                    android:background="@drawable/bg_chip_inactive"
+                    android:layout_marginEnd="8dp"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"/>
+
+                <Button
+                    android:id="@+id/btnGalleryConfirm"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_weight="1"
+                    android:text="LOG FOOD"
+                    android:textSize="12sp"
+                    android:textColor="#FFFFFF"
+                    android:background="#A100FF"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- DESCRIBE TAB -->
+        <LinearLayout
+            android:id="@+id/panelDescribe"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="DESCRIBE YOUR FOOD"
+                android:textSize="9sp"
+                android:textColor="#5C5C66"
+                android:letterSpacing="0.14"
+                android:paddingBottom="8dp"/>
+
+            <EditText
+                android:id="@+id/etDescribePrompt"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:hint="e.g. chicken rice with dark soy sauce, hawker portion"
+                android:hintTextColor="#5C5C66"
+                android:textColor="#F4F4F6"
+                android:textSize="14sp"
+                android:background="@drawable/bg_edittext"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:layout_marginBottom="10dp"/>
+
+            <!-- Quick-tag chips -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="QUICK TAGS"
+                android:textSize="9sp"
+                android:textColor="#5C5C66"
+                android:letterSpacing="0.12"
+                android:paddingBottom="6dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="12dp">
+
+                <Button android:id="@+id/chipHawker"
+                    android:layout_width="wrap_content" android:layout_height="30dp"
+                    android:text="Hawker" android:textSize="11sp" android:textColor="#D9B96A"
+                    android:background="@drawable/bg_chip_inactive"
+                    android:paddingStart="10dp" android:paddingEnd="10dp"
+                    android:layout_marginEnd="6dp"
+                    android:minWidth="0dp" android:minHeight="0dp"/>
+
+                <Button android:id="@+id/chipRestaurant"
+                    android:layout_width="wrap_content" android:layout_height="30dp"
+                    android:text="Restaurant" android:textSize="11sp" android:textColor="#9A9AA3"
+                    android:background="@drawable/bg_chip_inactive"
+                    android:paddingStart="10dp" android:paddingEnd="10dp"
+                    android:layout_marginEnd="6dp"
+                    android:minWidth="0dp" android:minHeight="0dp"/>
+
+                <Button android:id="@+id/chipHomemade"
+                    android:layout_width="wrap_content" android:layout_height="30dp"
+                    android:text="Homemade" android:textSize="11sp" android:textColor="#9A9AA3"
+                    android:background="@drawable/bg_chip_inactive"
+                    android:paddingStart="10dp" android:paddingEnd="10dp"
+                    android:minWidth="0dp" android:minHeight="0dp"/>
+            </LinearLayout>
+
+            <!-- Result card -->
+            <LinearLayout
+                android:id="@+id/llDescribeResult"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#141419"
+                android:padding="14dp"
+                android:layout_marginBottom="12dp"
+                android:visibility="gone">
+
+                <TextView android:id="@+id/tvDescribeFoodName"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="—" android:textSize="16sp" android:textColor="#F4F4F6"
+                    android:textStyle="bold" android:layout_marginBottom="4dp"/>
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView android:id="@+id/tvDescribeKcal"
+                        android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="0 kcal"
+                        android:textSize="14sp" android:textColor="#C86BFF"/>
+                    <TextView android:id="@+id/tvDescribeMacros"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="P 0g  C 0g  F 0g"
+                        android:textSize="12sp" android:textColor="#5C5C66"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnDescribeAnalyze"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_weight="1"
+                    android:text="ESTIMATE"
+                    android:textSize="12sp"
+                    android:textColor="#A100FF"
+                    android:background="@drawable/bg_chip_inactive"
+                    android:layout_marginEnd="8dp"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"/>
+
+                <Button
+                    android:id="@+id/btnDescribeConfirm"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_weight="1"
+                    android:text="LOG FOOD"
+                    android:textSize="12sp"
+                    android:textColor="#FFFFFF"
+                    android:background="#A100FF"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#17FFFFFF"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#0A0A0B"
+        app:menu="@menu/bottom_nav"
+        app:itemTextColor="@color/bottom_nav_item_colors"
+        app:itemIconTint="@color/bottom_nav_item_colors"
+        app:labelVisibilityMode="labeled"/>
 
 </LinearLayout>
